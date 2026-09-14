@@ -1,0 +1,39 @@
+{
+  "kernel": "6.18.35",
+  "machine": "aarch64",
+  "uid": 501,
+  "perf": null,
+  "clang": null,
+  "python": "/usr/bin/python3",
+  "pmu_devices": {
+    "software": "1",
+    "uprobe": "9",
+    "breakpoint": "5",
+    "tracepoint": "2",
+    "kprobe": "8"
+  },
+  "perf_event_paranoid": "2",
+  "syscall_number": 241,
+  "syscall_header": "/usr/include/asm-generic/unistd.h",
+  "perf_event_open_probe": {
+    "task_clock": {
+      "opened": true,
+      "count": 4282833,
+      "checksum": 124999750000
+    },
+    "cycles": {
+      "opened": false,
+      "errno": 2,
+      "error": "No such file or directory"
+    },
+    "instructions": {
+      "opened": false,
+      "errno": 2,
+      "error": "No such file or directory"
+    }
+  },
+  "date": "2026-09-14",
+  "environment": "ubuntu24 Apple container VM",
+  "source": "benchmarks/linux_pmu_probe.py",
+  "source_sha256": "19538bdae2476617f83c9042ac5fafcf6e637199f7c03708935f3f6f1d42e219"
+}

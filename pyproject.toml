@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xgb-latency-lab"
+version = "0.1.0"
+description = "Experimental single-row XGBoost to LLVM AOT compiler"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2,<3", "llvmlite>=0.46,<0.50"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "xgboost>=3.1,<4", "treelite>=4.1,<5", "tl2cgen==1.0.0"]
+
+[project.scripts]
+xgb-compile = "xgb_latency.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["xgb_latency*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
