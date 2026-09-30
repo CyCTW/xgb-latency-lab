@@ -1,4 +1,5 @@
 import json
+import platform
 
 import numpy as np
 import pytest
@@ -9,6 +10,7 @@ from xgb_latency.blockmix import compile_blockmix, compile_spec, equal_blocks, p
 from xgb_latency.direct import compile_direct
 from xgb_latency.packed import LAYOUTS, compile_packed
 from xgb_latency.rapidscorer import FULL, _epitome, compile_rapidscorer
+from xgb_latency.tiled import compile_tiled, lut, schedule
 from xgb_latency.vpred import compile_vpred
 
 
@@ -175,3 +177,44 @@ def test_parse_spec():
     assert parse_spec("vpred:lanes=8,layout=level,group_by_height=false") == (
         "vpred", {"lanes": 8, "layout": "level", "group_by_height": False})
     assert parse_spec("rs") == ("rs", {})
+
+
+VECTOR_OK = platform.machine() in ("x86_64", "AMD64")
+
+
+@pytest.mark.parametrize("name", NAMES)
+@pytest.mark.parametrize("tile_levels", [2, 3])
+@pytest.mark.parametrize("mode", ["scalar", "gather", "insert"])
+@pytest.mark.parametrize("lanes,grouped", [(1, True), (8, False)])
+def test_tiled(models, references, tmp_path, name, tile_levels, mode, lanes, grouped):
+    if mode != "scalar" and not VECTOR_OK:
+        pytest.skip("vector tile modes need x86-64 AVX2")
+    rows, ref = references[name]
+    lib = compile_tiled(models[0][name][1], tmp_path, lanes=lanes, tile_levels=tile_levels, mode=mode,
+                        group_by_height=grouped)
+    assert_bitwise(lib, rows, ref)
+
+
+def test_tile_schedule_and_lut():
+    assert schedule(8, 3) == [3, 3, 2] and schedule(6, 2) == [2, 2, 2] and schedule(0, 3) == []
+    assert lut(1) == [0, 1]
+    # Bit 0 = root goes right; bits 1/2 = its left/right child go right.
+    assert lut(2) == [0, 2, 1, 2, 0, 3, 1, 3]
+    table = lut(3)
+    assert len(table) == 128 and sorted(set(table)) == list(range(8))
+    assert table[0] == 0 and table[0b1000101] == 7  # right, right, right: nodes 0, 2, 6
+
+
+def test_tiled_in_blockmix(models, references, tmp_path):
+    trained, calibration = models
+    rows, ref = references["bin_d6"]
+    path = trained["bin_d6"][1]
+    blocks = [(0, 3, "tiled:tile_levels=2,mode=scalar"), (3, 7, "tiled:lanes=2,tile_levels=3")]
+    assert_bitwise(compile_blockmix(path, tmp_path, blocks, calibration=calibration), rows, ref)
+
+
+@pytest.mark.parametrize("kwargs,match", [(dict(tile_levels=4), "tile_levels"), (dict(mode="avx9"), "mode"),
+                                          (dict(lanes=5), "lanes")])
+def test_tiled_rejects_invalid(models, tmp_path, kwargs, match):
+    with pytest.raises(ValueError, match=match):
+        compile_tiled(models[0]["reg_d3"][1], tmp_path, **kwargs)

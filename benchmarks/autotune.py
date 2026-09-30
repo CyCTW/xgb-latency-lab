@@ -33,9 +33,11 @@ from xgb_latency import Forest, Predictor, compile_model
 from xgb_latency.blockmix import compile_blockmix, compile_spec, equal_blocks
 from benchmarks.run import build_tl, check_tl
 
+TILE_MODES = ("scalar", "gather", "insert") if platform.machine() in ("x86_64", "AMD64") else ("scalar",)
+
 BLOCK_SPECS = ["qs", "vpred:lanes=8,layout=level", "vpred:lanes=16,layout=tree",
                "packed:lanes=16,layout=forest", "packed:lanes=8,layout=hot_dfs", "rs",
-               "direct:select_depth=1"]
+               "direct:select_depth=1", "tiled:lanes=8,tile_levels=3,mode=scalar"]
 
 
 def whole_candidates(max_leaves: int):
@@ -52,6 +54,8 @@ def whole_candidates(max_leaves: int):
              "packed:lanes=16,layout=dfs", "packed:lanes=16,layout=bfs", "packed:lanes=16,layout=hot_dfs",
              "packed:lanes=16,layout=frames", "packed:lanes=16,layout=forest", "packed:lanes=8,layout=forest",
              "rs", "rs:dense_budget_bytes=262144", "direct", "direct:select_depth=1"]
+    specs += [f"tiled:lanes=8,tile_levels={k},mode={m}" for k in (2, 3) for m in TILE_MODES]
+    specs += [f"tiled:lanes=16,tile_levels=3,mode={m}" for m in ("scalar", "insert") if m in TILE_MODES]
     if max_leaves <= 64:
         specs = ["qs", "qs:stride=0"] + specs
     return llvm, specs
@@ -186,6 +190,11 @@ def main():
     eval_expected = booster.predict(xgb.DMatrix(evaluation), output_margin=True)
     references = [e for e in entries if e["name"] in ("llvm_select1_profiled_clang", "llvm_cost4_block32_rank4",
                                                       "llvm_interleaved_self_scalar16", "qs")]
+    # The best tuning-pass member of each new family is also carried into evaluation.
+    for family in ("vpred", "tiled", "packed"):
+        members = [e for e in entries if e["name"].startswith(family)]
+        if members:
+            references.append(min(members, key=lambda e: (runner.score(first[e["name"]]), e["name"])))
     final = list({e["name"]: e for e in [winner, *references, *shortlist[:3]]}.values())
     for e in final:
         actual = Predictor(e["library"]).predict(evaluation)

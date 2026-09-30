@@ -16,12 +16,12 @@ import time
 
 import numpy as np
 
-from . import direct, packed, quickscorer, rapidscorer, vpred
+from . import direct, packed, quickscorer, rapidscorer, tiled, vpred
 from .cgen import build, hexf, subforest
 from .model import Forest
 
 KINDS = {"qs": quickscorer.generate_c, "vpred": vpred.generate_c, "packed": packed.generate_c,
-         "rs": rapidscorer.generate_c, "direct": direct.generate_c}
+         "rs": rapidscorer.generate_c, "direct": direct.generate_c, "tiled": tiled.generate_c}
 _CALIBRATED = {"packed", "direct"}
 
 
