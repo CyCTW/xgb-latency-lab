@@ -56,6 +56,10 @@ def whole_candidates(max_leaves: int):
              "rs", "rs:dense_budget_bytes=262144", "direct", "direct:select_depth=1"]
     specs += [f"tiled:lanes=8,tile_levels={k},mode={m}" for k in (2, 3) for m in TILE_MODES]
     specs += [f"tiled:lanes=16,tile_levels=3,mode={m}" for m in ("scalar", "insert") if m in TILE_MODES]
+    vector = "gather" if "gather" in TILE_MODES else "scalar"
+    specs += [f"tiled:lanes=8,tile_levels=3,mode={vector},top_levels={t}" for t in (6, 9)]
+    specs += [f"probtiled:lanes=8,mode={vector}", f"probtiled:lanes=8,mode={vector},early_exit=false",
+              "probtiled:lanes=8,mode=insert" if "insert" in TILE_MODES else "probtiled:lanes=8,mode=scalar,max_nodes=3"]
     if max_leaves <= 64:
         specs = ["qs", "qs:stride=0"] + specs
     return llvm, specs
@@ -191,7 +195,7 @@ def main():
     references = [e for e in entries if e["name"] in ("llvm_select1_profiled_clang", "llvm_cost4_block32_rank4",
                                                       "llvm_interleaved_self_scalar16", "qs")]
     # The best tuning-pass member of each new family is also carried into evaluation.
-    for family in ("vpred", "tiled", "packed"):
+    for family in ("vpred", "tiled_lanes_8_tile_levels_3_mode_gather_top", "probtiled", "tiled", "packed"):
         members = [e for e in entries if e["name"].startswith(family)]
         if members:
             references.append(min(members, key=lambda e: (runner.score(first[e["name"]]), e["name"])))

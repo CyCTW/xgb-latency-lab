@@ -10,6 +10,7 @@ from xgb_latency.blockmix import compile_blockmix, compile_spec, equal_blocks, p
 from xgb_latency.direct import compile_direct
 from xgb_latency.packed import LAYOUTS, compile_packed
 from xgb_latency.rapidscorer import FULL, _epitome, compile_rapidscorer
+from xgb_latency.probtiled import _lut as _plut, _shape, _tiles, compile_probtiled
 from xgb_latency.tiled import compile_tiled, lut, schedule
 from xgb_latency.vpred import compile_vpred
 
@@ -218,3 +219,50 @@ def test_tiled_in_blockmix(models, references, tmp_path):
 def test_tiled_rejects_invalid(models, tmp_path, kwargs, match):
     with pytest.raises(ValueError, match=match):
         compile_tiled(models[0]["reg_d3"][1], tmp_path, **kwargs)
+
+
+@pytest.mark.parametrize("name", NAMES)
+@pytest.mark.parametrize("top", [1, 2, 4, 10])
+@pytest.mark.parametrize("mode", ["scalar", "gather"])
+def test_tiled_top_levels(models, references, tmp_path, name, top, mode):
+    if mode != "scalar" and not VECTOR_OK:
+        pytest.skip("vector tile modes need x86-64 AVX2")
+    rows, ref = references[name]
+    lib = compile_tiled(models[0][name][1], tmp_path, lanes=4, tile_levels=3, mode=mode, top_levels=top)
+    assert_bitwise(lib, rows, ref)
+
+
+@pytest.mark.parametrize("name", NAMES)
+@pytest.mark.parametrize("mode", ["scalar", "gather", "insert"])
+@pytest.mark.parametrize("max_nodes,early_exit,lanes", [(7, True, 8), (3, False, 1), (1, True, 4)])
+def test_probtiled(models, references, tmp_path, name, mode, max_nodes, early_exit, lanes):
+    if mode != "scalar" and not VECTOR_OK:
+        pytest.skip("vector tile modes need x86-64 AVX2")
+    trained, calibration = models
+    rows, ref = references[name]
+    lib = compile_probtiled(trained[name][1], tmp_path, calibration=calibration, lanes=lanes, max_nodes=max_nodes,
+                            mode=mode, early_exit=early_exit)
+    assert_bitwise(lib, rows, ref)
+
+
+def test_probtiled_shapes_follow_hot_path():
+    from xgb_latency.model import Tree
+    # Left-leaning chain: 0 -> 1 -> 2 -> 3 (internal, all hot on the left), right children are leaves.
+    left = (1, 3, -1, 5, -1, 7, -1, -1, -1)
+    right = (2, 4, -1, 6, -1, 8, -1, -1, -1)
+    t = Tree(left, right, (0,) * 9, tuple(float(i) for i in range(9)), (True,) * 9,
+             (4, 3, 0, 2, 0, 1, 0, 0, 0))
+    reach = [100, 90, 10, 80, 10, 70, 10, 60, 10]
+    tiles, owner = _tiles(t, reach, 3)
+    slots, exits = tiles[0]
+    assert slots == [0, 1, 3] and exits == [5, 6, 4, 2]
+    assert _plut(_shape(t, slots, exits))[0] == 0  # all go left -> leftmost exit
+
+
+def test_probtiled_requires_calibration(models, tmp_path):
+    with pytest.raises(ValueError, match="calibration"):
+        compile_probtiled(models[0]["reg_d3"][1], tmp_path, calibration=None)
+    with pytest.raises(ValueError, match="max_nodes"):
+        compile_probtiled(models[0]["reg_d3"][1], tmp_path, calibration=models[1], max_nodes=8)
+    with pytest.raises(ValueError, match="top_levels"):
+        compile_tiled(models[0]["reg_d3"][1], tmp_path, top_levels=0)
