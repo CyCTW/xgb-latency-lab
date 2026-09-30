@@ -4,6 +4,8 @@
 
 ## 結論
 
+> 後續：上層混合、機率導向 tiling 與六情境干擾驗證見 [COLD_TILING.md](COLD_TILING.md)。
+
 在 x86 上，**tiling 是目前最快的 batch=1 遍歷方式**。它在五個模型的 evaluation 中都勝過 VPred，自動調參在其中四個選中 tiling。100×4 仍由 QuickScorer 和 LLVM `cost4_block32_rank4` 領先。
 
 下表是 5 次獨立 evaluation 程序的中位數（ticks／row），括號內是 tiling 贏的程序數：

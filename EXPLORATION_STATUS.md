@@ -97,6 +97,13 @@ Warm 結果來源：`results/{exploration,combined,bucket,prefix,directory}-maco
 - 路徑隱含冗餘 split 在兩個 hist 模型都是 0，不實作化簡。
 - 原環境缺 `libclang_rt.profile` 導致 PGO 測試失敗，安裝 `libclang-rt-18-dev` 後恢復。
 
+## Tiling 延伸與干擾驗證（2026-10-01，已完成一輪）
+
+- 報告：[COLD_TILING.md](COLD_TILING.md)；數值：[reports/cold-tiling-x86-20261001.json](reports/cold-tiling-x86-20261001.json)、[reports/tiling-round3-x86-20261001.json](reports/tiling-round3-x86-20261001.json)。
+- 新增 `top_levels` 上層 tiling 混合與 `probtiled.py`；完整套件 **1143 passed**。
+- 六情境 cold：300×6／1000×4／300×8 的 18 個情境核心延遲都比前輪最佳 LLVM 低 12–47%（每情境 3/3 程序）；100×4 在 data／mixed 改選 tiling（−24%／−31%）；lossguide 仍以 LLVM 交錯最佳。
+- 上層混合在 lossguide cold tuning 勝過完整 tiling（5/6 情境），但仍不及 LLVM；probtiled 只在 lossguide warm 勝出（−4.4%）。
+
 ## Tree tiling（2026-09-30，已完成一輪）
 
 - 報告：[TILING.md](TILING.md)；數值：[reports/tiling-x86-20260930.json](reports/tiling-x86-20260930.json)。

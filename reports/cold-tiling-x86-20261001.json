@@ -1,0 +1,2754 @@
+{
+ "date": "2026-10-01",
+ "round": "cold3: six same-thread interference profiles, tuning shortlist x3, 3 evaluation processes",
+ "metric": "model_mean_median_ns",
+ "models": {
+  "100x4": {
+   "reference": "llvm_cost4_block32_rank4",
+   "profiles": {
+    "hot_control": {
+     "selected": "qs",
+     "evaluation": {
+      "qs": {
+       "model_mean_median_ns": [
+        369.8,
+        376.7,
+        374.9
+       ],
+       "model_p99_ns": [
+        496,
+        485,
+        479
+       ],
+       "pipeline_block_median_ns": [
+        334.9,
+        327.9,
+        329.4
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        937.9,
+        1100.3,
+        983.4
+       ],
+       "model_p99_ns": [
+        1950,
+        2068,
+        2080
+       ],
+       "pipeline_block_median_ns": [
+        954.2,
+        1139.0,
+        1028.2
+       ]
+      },
+      "llvm_cost4_block32_rank4": {
+       "model_mean_median_ns": [
+        432.5,
+        384.1,
+        427.2
+       ],
+       "model_p99_ns": [
+        820,
+        764,
+        774
+       ],
+       "pipeline_block_median_ns": [
+        375.7,
+        349.5,
+        358.5
+       ]
+      },
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        522.8,
+        531.0,
+        524.4
+       ],
+       "model_p99_ns": [
+        621,
+        543,
+        545
+       ],
+       "pipeline_block_median_ns": [
+        483.3,
+        502.5,
+        479.8
+       ]
+      },
+      "vpred_lanes_8_layout_level": {
+       "model_mean_median_ns": [
+        549.3,
+        566.8,
+        571.8
+       ],
+       "model_p99_ns": [
+        744,
+        909,
+        749
+       ],
+       "pipeline_block_median_ns": [
+        514.3,
+        519.9,
+        520.7
+       ]
+      }
+     }
+    },
+    "features_64k": {
+     "selected": "qs",
+     "evaluation": {
+      "qs": {
+       "model_mean_median_ns": [
+        463.0,
+        594.6,
+        502.3
+       ],
+       "model_p99_ns": [
+        636,
+        685,
+        690
+       ],
+       "pipeline_block_median_ns": [
+        725.6,
+        814.9,
+        644.5
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        1278.0,
+        1079.0,
+        1207.4
+       ],
+       "model_p99_ns": [
+        2446,
+        1996,
+        2456
+       ],
+       "pipeline_block_median_ns": [
+        1339.0,
+        1181.9,
+        1344.3
+       ]
+      },
+      "llvm_cost4_block32_rank4": {
+       "model_mean_median_ns": [
+        519.4,
+        486.9,
+        518.9
+       ],
+       "model_p99_ns": [
+        967,
+        893,
+        1098
+       ],
+       "pipeline_block_median_ns": [
+        806.4,
+        678.7,
+        714.3
+       ]
+      },
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        667.2,
+        582.3,
+        603.7
+       ],
+       "model_p99_ns": [
+        962,
+        632,
+        1006
+       ],
+       "pipeline_block_median_ns": [
+        967.8,
+        825.7,
+        869.8
+       ]
+      },
+      "vpred_lanes_8_layout_level": {
+       "model_mean_median_ns": [
+        654.5,
+        621.5,
+        649.4
+       ],
+       "model_p99_ns": [
+        1055,
+        974,
+        1196
+       ],
+       "pipeline_block_median_ns": [
+        1006.6,
+        829.3,
+        952.9
+       ]
+      }
+     }
+    },
+    "features_4m": {
+     "selected": "qs",
+     "evaluation": {
+      "qs": {
+       "model_mean_median_ns": [
+        617.6,
+        604.8,
+        498.5
+       ],
+       "model_p99_ns": [
+        1095,
+        1153,
+        814
+       ],
+       "pipeline_block_median_ns": [
+        1838.4,
+        1674.6,
+        1144.7
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        1665.2,
+        1634.3,
+        1198.1
+       ],
+       "model_p99_ns": [
+        2881,
+        2900,
+        2517
+       ],
+       "pipeline_block_median_ns": [
+        2885.3,
+        2639.4,
+        1745.7
+       ]
+      },
+      "llvm_cost4_block32_rank4": {
+       "model_mean_median_ns": [
+        715.8,
+        731.7,
+        565.5
+       ],
+       "model_p99_ns": [
+        1309,
+        1310,
+        1176
+       ],
+       "pipeline_block_median_ns": [
+        1863.7,
+        1811.7,
+        1236.9
+       ]
+      },
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        903.0,
+        834.2,
+        674.5
+       ],
+       "model_p99_ns": [
+        1207,
+        1030,
+        996
+       ],
+       "pipeline_block_median_ns": [
+        2115.0,
+        1973.9,
+        1501.2
+       ]
+      },
+      "vpred_lanes_8_layout_level": {
+       "model_mean_median_ns": [
+        1060.5,
+        984.1,
+        718.9
+       ],
+       "model_p99_ns": [
+        1466,
+        1268,
+        1149
+       ],
+       "pipeline_block_median_ns": [
+        2181.2,
+        2004.5,
+        1304.4
+       ]
+      }
+     }
+    },
+    "data_pressure_2m": {
+     "selected": "tiled_lanes_8_tile_levels_2_mode_insert",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        867.5,
+        750.6,
+        756.0
+       ],
+       "model_p99_ns": [
+        1671,
+        1714,
+        1711
+       ],
+       "pipeline_block_median_ns": [
+        47093.5,
+        51367.5,
+        49012.6
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        1952.0,
+        2103.2,
+        2040.4
+       ],
+       "model_p99_ns": [
+        4473,
+        4923,
+        4885
+       ],
+       "pipeline_block_median_ns": [
+        48408.6,
+        52965.7,
+        50339.8
+       ]
+      },
+      "qs": {
+       "model_mean_median_ns": [
+        853.8,
+        880.6,
+        860.2
+       ],
+       "model_p99_ns": [
+        1973,
+        1871,
+        2276
+       ],
+       "pipeline_block_median_ns": [
+        47397.7,
+        49492.5,
+        48066.4
+       ]
+      },
+      "llvm_cost4_block32_rank4": {
+       "model_mean_median_ns": [
+        768.4,
+        990.3,
+        1007.9
+       ],
+       "model_p99_ns": [
+        2059,
+        2419,
+        2311
+       ],
+       "pipeline_block_median_ns": [
+        46786.3,
+        50984.7,
+        48138.1
+       ]
+      },
+      "vpred_lanes_8_layout_level": {
+       "model_mean_median_ns": [
+        841.2,
+        804.8,
+        944.5
+       ],
+       "model_p99_ns": [
+        1503,
+        1527,
+        1746
+       ],
+       "pipeline_block_median_ns": [
+        47616.3,
+        51495.3,
+        49447.5
+       ]
+      }
+     }
+    },
+    "code_pressure": {
+     "selected": "qs",
+     "evaluation": {
+      "qs": {
+       "model_mean_median_ns": [
+        474.0,
+        498.4,
+        497.8
+       ],
+       "model_p99_ns": [
+        1059,
+        1053,
+        1020
+       ],
+       "pipeline_block_median_ns": [
+        15399.5,
+        15206.7,
+        15226.1
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        1263.9,
+        1252.3,
+        1347.7
+       ],
+       "model_p99_ns": [
+        2599,
+        2611,
+        2929
+       ],
+       "pipeline_block_median_ns": [
+        16180.1,
+        15991.0,
+        16051.1
+       ]
+      },
+      "llvm_cost4_block32_rank4": {
+       "model_mean_median_ns": [
+        580.8,
+        576.2,
+        587.5
+       ],
+       "model_p99_ns": [
+        1166,
+        1132,
+        1126
+       ],
+       "pipeline_block_median_ns": [
+        15322.3,
+        15409.2,
+        15505.0
+       ]
+      },
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        601.0,
+        605.8,
+        624.6
+       ],
+       "model_p99_ns": [
+        1006,
+        978,
+        993
+       ],
+       "pipeline_block_median_ns": [
+        15488.4,
+        15803.7,
+        15502.4
+       ]
+      },
+      "vpred_lanes_8_layout_level": {
+       "model_mean_median_ns": [
+        720.4,
+        740.6,
+        750.2
+       ],
+       "model_p99_ns": [
+        1274,
+        1256,
+        1245
+       ],
+       "pipeline_block_median_ns": [
+        15511.0,
+        15648.9,
+        16160.0
+       ]
+      }
+     }
+    },
+    "mixed_pressure": {
+     "selected": "tiled_lanes_8_tile_levels_2_mode_insert",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        883.2,
+        956.3,
+        847.6
+       ],
+       "model_p99_ns": [
+        1778,
+        1616,
+        1800
+       ],
+       "pipeline_block_median_ns": [
+        69191.1,
+        67901.8,
+        66564.5
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        2633.2,
+        2633.0,
+        2467.2
+       ],
+       "model_p99_ns": [
+        7013,
+        6849,
+        5630
+       ],
+       "pipeline_block_median_ns": [
+        74760.7,
+        70910.7,
+        73400.9
+       ]
+      },
+      "qs": {
+       "model_mean_median_ns": [
+        1225.6,
+        924.3,
+        1256.9
+       ],
+       "model_p99_ns": [
+        2072,
+        1860,
+        2268
+       ],
+       "pipeline_block_median_ns": [
+        68078.6,
+        67841.8,
+        69441.6
+       ]
+      },
+      "llvm_cost4_block32_rank4": {
+       "model_mean_median_ns": [
+        1486.8,
+        1279.5,
+        1203.3
+       ],
+       "model_p99_ns": [
+        2846,
+        2486,
+        2427
+       ],
+       "pipeline_block_median_ns": [
+        73353.9,
+        68883.4,
+        68708.9
+       ]
+      },
+      "vpred_lanes_8_layout_level": {
+       "model_mean_median_ns": [
+        1100.3,
+        1061.7,
+        1211.5
+       ],
+       "model_p99_ns": [
+        1819,
+        2208,
+        2167
+       ],
+       "pipeline_block_median_ns": [
+        70350.0,
+        68405.1,
+        66002.5
+       ]
+      }
+     }
+    }
+   },
+   "tuning": {
+    "hot_control": {
+     "llvm_cost4_block32_rank4": 464.4414062,
+     "llvm_interleaved_self_scalar16": 759.1601562,
+     "packed_lanes_8_layout_forest": 657.5273438,
+     "probtiled_lanes_8_mode_gather": 854.0742188,
+     "qs": 430.59375,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 529.0742188,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 630.8476562,
+     "vpred_lanes_8_layout_level": 559.2382812,
+     "tl2cgen_profiled_lto_prepared": 981.0078125
+    },
+    "features_64k": {
+     "llvm_cost4_block32_rank4": 724.7773438,
+     "llvm_interleaved_self_scalar16": 969.6523438,
+     "packed_lanes_8_layout_forest": 1044.597656,
+     "probtiled_lanes_8_mode_gather": 1237.46875,
+     "qs": 501.7460938,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 801.3554688,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 984.5078125,
+     "vpred_lanes_8_layout_level": 785.3320312,
+     "tl2cgen_profiled_lto_prepared": 1271.6875
+    },
+    "features_4m": {
+     "llvm_cost4_block32_rank4": 501.1875,
+     "llvm_interleaved_self_scalar16": 782.1679688,
+     "packed_lanes_8_layout_forest": 781.9257812,
+     "probtiled_lanes_8_mode_gather": 1076.539062,
+     "qs": 471.8671875,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 1486.992188,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 736.9335938,
+     "vpred_lanes_8_layout_level": 663.6171875,
+     "tl2cgen_profiled_lto_prepared": 1111.167969
+    },
+    "data_pressure_2m": {
+     "llvm_cost4_block32_rank4": 870.953125,
+     "llvm_interleaved_self_scalar16": 1376.855469,
+     "packed_lanes_8_layout_forest": 1343.902344,
+     "probtiled_lanes_8_mode_gather": 1911.117188,
+     "qs": 792.3125,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 789.8515625,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 1256.230469,
+     "vpred_lanes_8_layout_level": 810.6914062,
+     "tl2cgen_profiled_lto_prepared": 2265.4375
+    },
+    "code_pressure": {
+     "llvm_cost4_block32_rank4": 685.4570312,
+     "llvm_interleaved_self_scalar16": 885.5351562,
+     "packed_lanes_8_layout_forest": 815.5898438,
+     "probtiled_lanes_8_mode_gather": 1088.957031,
+     "qs": 524.875,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 602.1171875,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 832.546875,
+     "vpred_lanes_8_layout_level": 755.7734375,
+     "tl2cgen_profiled_lto_prepared": 1430.527344
+    },
+    "mixed_pressure": {
+     "llvm_cost4_block32_rank4": 1247.121094,
+     "llvm_interleaved_self_scalar16": 1729.566406,
+     "packed_lanes_8_layout_forest": 1383.765625,
+     "probtiled_lanes_8_mode_gather": 1866.277344,
+     "qs": 1181.578125,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 944.890625,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 1544.304688,
+     "vpred_lanes_8_layout_level": 885.90625,
+     "tl2cgen_profiled_lto_prepared": 2652.5625
+    }
+   }
+  },
+  "300x6": {
+   "reference": "llvm_interleaved_self_scalar16",
+   "profiles": {
+    "hot_control": {
+     "selected": "tiled_lanes_8_tile_levels_3_mode_gather",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        2245.5,
+        2347.8,
+        2271.6
+       ],
+       "model_p99_ns": [
+        5274,
+        5795,
+        5214
+       ],
+       "pipeline_block_median_ns": [
+        2114.5,
+        2166.9,
+        2132.2
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        6862.6,
+        7299.7,
+        7417.9
+       ],
+       "model_p99_ns": [
+        14373,
+        21588,
+        23732
+       ],
+       "pipeline_block_median_ns": [
+        7000.5,
+        7142.5,
+        7288.2
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        3092.6,
+        3411.3,
+        3209.0
+       ],
+       "model_p99_ns": [
+        6214,
+        8121,
+        7330
+       ],
+       "pipeline_block_median_ns": [
+        3209.9,
+        3545.4,
+        3065.6
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        2475.1,
+        2875.2,
+        2583.1
+       ],
+       "model_p99_ns": [
+        4988,
+        6209,
+        5651
+       ],
+       "pipeline_block_median_ns": [
+        2483.8,
+        2926.4,
+        2556.5
+       ]
+      }
+     }
+    },
+    "features_64k": {
+     "selected": "tiled_lanes_8_tile_levels_3_mode_gather",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        2240.3,
+        2299.1,
+        2292.9
+       ],
+       "model_p99_ns": [
+        4523,
+        4812,
+        4060
+       ],
+       "pipeline_block_median_ns": [
+        2614.5,
+        2537.5,
+        2462.8
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        7324.5,
+        7180.5,
+        7132.8
+       ],
+       "model_p99_ns": [
+        25143,
+        25623,
+        25728
+       ],
+       "pipeline_block_median_ns": [
+        7216.7,
+        7179.2,
+        7332.6
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        3285.9,
+        3155.1,
+        3114.2
+       ],
+       "model_p99_ns": [
+        8117,
+        6558,
+        7233
+       ],
+       "pipeline_block_median_ns": [
+        3333.0,
+        3327.4,
+        3292.8
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        2688.2,
+        2606.3,
+        2589.6
+       ],
+       "model_p99_ns": [
+        6165,
+        5387,
+        5229
+       ],
+       "pipeline_block_median_ns": [
+        2802.4,
+        2761.8,
+        2727.7
+       ]
+      }
+     }
+    },
+    "features_4m": {
+     "selected": "tiled_lanes_8_tile_levels_3_mode_gather",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        2381.1,
+        2395.2,
+        2396.1
+       ],
+       "model_p99_ns": [
+        6175,
+        6442,
+        6568
+       ],
+       "pipeline_block_median_ns": [
+        3072.3,
+        2898.7,
+        3653.0
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        7875.0,
+        7932.6,
+        7826.2
+       ],
+       "model_p99_ns": [
+        31419,
+        32892,
+        24980
+       ],
+       "pipeline_block_median_ns": [
+        8563.0,
+        8221.7,
+        8561.4
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        3364.3,
+        3174.4,
+        3547.2
+       ],
+       "model_p99_ns": [
+        9115,
+        6101,
+        12164
+       ],
+       "pipeline_block_median_ns": [
+        4076.1,
+        3963.6,
+        4335.8
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        2868.0,
+        2565.7,
+        2788.7
+       ],
+       "model_p99_ns": [
+        7486,
+        6026,
+        7112
+       ],
+       "pipeline_block_median_ns": [
+        3460.8,
+        3224.7,
+        3316.9
+       ]
+      }
+     }
+    },
+    "data_pressure_2m": {
+     "selected": "tiled_lanes_8_tile_levels_3_mode_gather",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        3839.8,
+        3726.3,
+        3630.1
+       ],
+       "model_p99_ns": [
+        11097,
+        11046,
+        8330
+       ],
+       "pipeline_block_median_ns": [
+        50940.9,
+        54009.7,
+        47102.5
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        13983.1,
+        14755.5,
+        14124.7
+       ],
+       "model_p99_ns": [
+        39545,
+        42584,
+        36156
+       ],
+       "pipeline_block_median_ns": [
+        62761.4,
+        67478.7,
+        56962.6
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        6066.3,
+        5818.1,
+        5678.4
+       ],
+       "model_p99_ns": [
+        21978,
+        21711,
+        16097
+       ],
+       "pipeline_block_median_ns": [
+        52514.3,
+        52521.2,
+        48928.4
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        4854.9,
+        4938.3,
+        4504.8
+       ],
+       "model_p99_ns": [
+        12998,
+        18117,
+        18245
+       ],
+       "pipeline_block_median_ns": [
+        54433.6,
+        49504.9,
+        48390.4
+       ]
+      }
+     }
+    },
+    "code_pressure": {
+     "selected": "tiled_lanes_8_tile_levels_3_mode_gather",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        2314.1,
+        2280.9,
+        2326.2
+       ],
+       "model_p99_ns": [
+        5436,
+        5877,
+        6028
+       ],
+       "pipeline_block_median_ns": [
+        17548.5,
+        16996.1,
+        16940.0
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        7437.6,
+        7071.6,
+        7402.3
+       ],
+       "model_p99_ns": [
+        22627,
+        20566,
+        22985
+       ],
+       "pipeline_block_median_ns": [
+        22417.0,
+        21611.9,
+        22240.3
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        3467.6,
+        3403.4,
+        3354.6
+       ],
+       "model_p99_ns": [
+        14225,
+        7921,
+        7350
+       ],
+       "pipeline_block_median_ns": [
+        18628.1,
+        18175.9,
+        18205.6
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        3018.0,
+        3087.4,
+        3462.1
+       ],
+       "model_p99_ns": [
+        6814,
+        6410,
+        12136
+       ],
+       "pipeline_block_median_ns": [
+        17957.2,
+        17633.7,
+        18342.6
+       ]
+      }
+     }
+    },
+    "mixed_pressure": {
+     "selected": "tiled_lanes_8_tile_levels_3_mode_gather",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        4383.5,
+        3899.1,
+        3896.5
+       ],
+       "model_p99_ns": [
+        12865,
+        12352,
+        10816
+       ],
+       "pipeline_block_median_ns": [
+        72114.4,
+        68826.4,
+        69372.8
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        15596.7,
+        14377.9,
+        14876.2
+       ],
+       "model_p99_ns": [
+        47092,
+        43523,
+        40632
+       ],
+       "pipeline_block_median_ns": [
+        83828.4,
+        80778.7,
+        82832.8
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        6272.4,
+        6136.8,
+        7675.6
+       ],
+       "model_p99_ns": [
+        17224,
+        20887,
+        24127
+       ],
+       "pipeline_block_median_ns": [
+        70580.9,
+        71307.5,
+        81891.2
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        5375.7,
+        5372.2,
+        5691.8
+       ],
+       "model_p99_ns": [
+        18165,
+        12476,
+        12757
+       ],
+       "pipeline_block_median_ns": [
+        69144.1,
+        71163.9,
+        80135.3
+       ]
+      }
+     }
+    }
+   },
+   "tuning": {
+    "hot_control": {
+     "llvm_cost4_block32_rank4": 4205.5,
+     "llvm_interleaved_self_scalar16": 3267.378906,
+     "packed_lanes_16_layout_frames": 3517.855469,
+     "probtiled_lanes_8_mode_gather": 5429.160156,
+     "qs": 10395.75,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 2315.109375,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 2691.085938,
+     "vpred_lanes_16_layout_level": 2637.917969,
+     "tl2cgen_profiled_lto_prepared": 7145.808594
+    },
+    "features_64k": {
+     "llvm_cost4_block32_rank4": 4297.003906,
+     "llvm_interleaved_self_scalar16": 3156.828125,
+     "packed_lanes_16_layout_frames": 3434.757812,
+     "probtiled_lanes_8_mode_gather": 5260.6875,
+     "qs": 10651.19922,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 2432.890625,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 2711.039062,
+     "vpred_lanes_16_layout_level": 2717.558594,
+     "tl2cgen_profiled_lto_prepared": 7254.257812
+    },
+    "features_4m": {
+     "llvm_cost4_block32_rank4": 4609.511719,
+     "llvm_interleaved_self_scalar16": 3355.027344,
+     "packed_lanes_16_layout_frames": 3647.457031,
+     "probtiled_lanes_8_mode_gather": 5770.265625,
+     "qs": 11315.07031,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 2470.492188,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 3336.609375,
+     "vpred_lanes_16_layout_level": 2781.882812,
+     "tl2cgen_profiled_lto_prepared": 7719.449219
+    },
+    "data_pressure_2m": {
+     "llvm_cost4_block32_rank4": 8227.855469,
+     "llvm_interleaved_self_scalar16": 5410.40625,
+     "packed_lanes_16_layout_frames": 5234.808594,
+     "probtiled_lanes_8_mode_gather": 9260.152344,
+     "qs": 14722.63281,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 3808.277344,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 4765.523438,
+     "vpred_lanes_16_layout_level": 4307.949219,
+     "tl2cgen_profiled_lto_prepared": 14246.62109
+    },
+    "code_pressure": {
+     "llvm_cost4_block32_rank4": 4516.164062,
+     "llvm_interleaved_self_scalar16": 3702.761719,
+     "packed_lanes_16_layout_frames": 5019.800781,
+     "probtiled_lanes_8_mode_gather": 5723.109375,
+     "qs": 10948,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 2372.507812,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 3642.417969,
+     "vpred_lanes_16_layout_level": 3341.832031,
+     "tl2cgen_profiled_lto_prepared": 7405.621094
+    },
+    "mixed_pressure": {
+     "llvm_cost4_block32_rank4": 8609.867188,
+     "llvm_interleaved_self_scalar16": 7067.09375,
+     "packed_lanes_16_layout_frames": 5801.871094,
+     "probtiled_lanes_8_mode_gather": 9626.777344,
+     "qs": 15768.46875,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 4125.75,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 6031.9375,
+     "vpred_lanes_16_layout_level": 5563.796875,
+     "tl2cgen_profiled_lto_prepared": 14944.67578
+    }
+   }
+  },
+  "1000x4": {
+   "reference": "llvm_interleaved_self_scalar16",
+   "profiles": {
+    "hot_control": {
+     "selected": "tiled_lanes_8_tile_levels_2_mode_insert",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        5568.3,
+        5762.9,
+        5664.9
+       ],
+       "model_p99_ns": [
+        14669,
+        18565,
+        26004
+       ],
+       "pipeline_block_median_ns": [
+        5468.5,
+        8137.0,
+        5785.5
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        17353.1,
+        15933.1,
+        16066.6
+       ],
+       "model_p99_ns": [
+        46898,
+        48950,
+        45865
+       ],
+       "pipeline_block_median_ns": [
+        17146.0,
+        15655.9,
+        15202.0
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        8125.4,
+        7072.2,
+        7161.0
+       ],
+       "model_p99_ns": [
+        26497,
+        27878,
+        22937
+       ],
+       "pipeline_block_median_ns": [
+        8737.8,
+        8621.1,
+        7013.8
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        6603.0,
+        7460.7,
+        5870.9
+       ],
+       "model_p99_ns": [
+        20283,
+        28682,
+        19024
+       ],
+       "pipeline_block_median_ns": [
+        6315.8,
+        6310.4,
+        5793.2
+       ]
+      }
+     }
+    },
+    "features_64k": {
+     "selected": "tiled_lanes_8_tile_levels_2_mode_insert",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        6094.7,
+        5544.6,
+        5946.2
+       ],
+       "model_p99_ns": [
+        15257,
+        11049,
+        18288
+       ],
+       "pipeline_block_median_ns": [
+        5921.4,
+        5753.5,
+        5863.2
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        15157.1,
+        14689.2,
+        14889.1
+       ],
+       "model_p99_ns": [
+        39377,
+        34710,
+        39753
+       ],
+       "pipeline_block_median_ns": [
+        16165.8,
+        14711.6,
+        15141.5
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        7891.6,
+        7121.8,
+        7069.3
+       ],
+       "model_p99_ns": [
+        27837,
+        19827,
+        18803
+       ],
+       "pipeline_block_median_ns": [
+        8478.7,
+        7122.8,
+        7829.3
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        5931.8,
+        5539.8,
+        5997.1
+       ],
+       "model_p99_ns": [
+        17703,
+        10352,
+        17531
+       ],
+       "pipeline_block_median_ns": [
+        6411.0,
+        5725.5,
+        6068.8
+       ]
+      }
+     }
+    },
+    "features_4m": {
+     "selected": "tiled_lanes_8_tile_levels_2_mode_insert",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        5687.2,
+        5794.5,
+        5666.0
+       ],
+       "model_p99_ns": [
+        21069,
+        12407,
+        15104
+       ],
+       "pipeline_block_median_ns": [
+        6374.7,
+        6592.3,
+        6359.3
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        15448.5,
+        15754.3,
+        16127.1
+       ],
+       "model_p99_ns": [
+        44449,
+        50506,
+        49573
+       ],
+       "pipeline_block_median_ns": [
+        16064.1,
+        16710.3,
+        16613.9
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        7390.2,
+        7371.8,
+        8091.8
+       ],
+       "model_p99_ns": [
+        24567,
+        28947,
+        30926
+       ],
+       "pipeline_block_median_ns": [
+        7875.4,
+        7919.3,
+        7785.0
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        5757.8,
+        5760.1,
+        5881.1
+       ],
+       "model_p99_ns": [
+        16199,
+        22864,
+        24497
+       ],
+       "pipeline_block_median_ns": [
+        6443.0,
+        6517.4,
+        7684.6
+       ]
+      }
+     }
+    },
+    "data_pressure_2m": {
+     "selected": "tiled_lanes_8_tile_levels_2_mode_insert",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        7374.4,
+        6816.3,
+        6421.1
+       ],
+       "model_p99_ns": [
+        26700,
+        20775,
+        20707
+       ],
+       "pipeline_block_median_ns": [
+        57381.0,
+        58986.9,
+        55828.7
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        27011.5,
+        28297.6,
+        26767.8
+       ],
+       "model_p99_ns": [
+        63100,
+        67945,
+        60529
+       ],
+       "pipeline_block_median_ns": [
+        78951.5,
+        86989.8,
+        79438.9
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        11434.1,
+        12315.9,
+        11516.9
+       ],
+       "model_p99_ns": [
+        35842,
+        38114,
+        35074
+       ],
+       "pipeline_block_median_ns": [
+        62049.1,
+        64728.9,
+        62191.4
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        7532.1,
+        8210.9,
+        8025.8
+       ],
+       "model_p99_ns": [
+        23553,
+        38704,
+        30158
+       ],
+       "pipeline_block_median_ns": [
+        55617.5,
+        59100.2,
+        56922.9
+       ]
+      }
+     }
+    },
+    "code_pressure": {
+     "selected": "tiled_lanes_8_tile_levels_2_mode_insert",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        5580.2,
+        5659.9,
+        5804.0
+       ],
+       "model_p99_ns": [
+        19052,
+        20471,
+        19632
+       ],
+       "pipeline_block_median_ns": [
+        20679.9,
+        20489.4,
+        20680.3
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        15193.8,
+        13982.5,
+        16306.7
+       ],
+       "model_p99_ns": [
+        37307,
+        34596,
+        48405
+       ],
+       "pipeline_block_median_ns": [
+        30336.3,
+        29421.8,
+        31774.6
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        7232.6,
+        7752.8,
+        9052.9
+       ],
+       "model_p99_ns": [
+        20915,
+        29816,
+        34521
+       ],
+       "pipeline_block_median_ns": [
+        22039.9,
+        22780.8,
+        24460.9
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        6215.1,
+        6757.4,
+        7291.5
+       ],
+       "model_p99_ns": [
+        18110,
+        25482,
+        25933
+       ],
+       "pipeline_block_median_ns": [
+        20909.3,
+        22197.7,
+        22653.8
+       ]
+      }
+     }
+    },
+    "mixed_pressure": {
+     "selected": "tiled_lanes_8_tile_levels_2_mode_insert",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_2_mode_insert": {
+       "model_mean_median_ns": [
+        7728.7,
+        6562.4,
+        7040.7
+       ],
+       "model_p99_ns": [
+        24531,
+        23876,
+        21240
+       ],
+       "pipeline_block_median_ns": [
+        80563.1,
+        77790.9,
+        74220.9
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        28150.1,
+        28490.0,
+        28280.8
+       ],
+       "model_p99_ns": [
+        66435,
+        65747,
+        63597
+       ],
+       "pipeline_block_median_ns": [
+        105245.9,
+        98738.3,
+        101828.3
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        13481.5,
+        13190.5,
+        12078.8
+       ],
+       "model_p99_ns": [
+        43370,
+        40342,
+        32224
+       ],
+       "pipeline_block_median_ns": [
+        83748.2,
+        83369.8,
+        82078.1
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        9506.1,
+        9250.1,
+        8258.4
+       ],
+       "model_p99_ns": [
+        27453,
+        31111,
+        24518
+       ],
+       "pipeline_block_median_ns": [
+        78840.0,
+        80892.2,
+        79818.3
+       ]
+      }
+     }
+    }
+   },
+   "tuning": {
+    "hot_control": {
+     "llvm_cost4_block32_rank4": 7782.269531,
+     "llvm_interleaved_self_scalar16": 7037.742188,
+     "packed_lanes_16_layout_hot_dfs": 7362.175781,
+     "probtiled_lanes_8_mode_gather_early_exit_false": 11176.76172,
+     "qs": 10191.57031,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 5578.363281,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 6834.800781,
+     "vpred_lanes_16_layout_level": 5936.863281,
+     "tl2cgen_profiled_lto_prepared": 15418.04688
+    },
+    "features_64k": {
+     "llvm_cost4_block32_rank4": 9205.9375,
+     "llvm_interleaved_self_scalar16": 12670.12109,
+     "packed_lanes_16_layout_hot_dfs": 12010.15234,
+     "probtiled_lanes_8_mode_gather_early_exit_false": 17420.59375,
+     "qs": 11451.57812,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 7927.265625,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 10017.4375,
+     "vpred_lanes_16_layout_level": 7683.804688,
+     "tl2cgen_profiled_lto_prepared": 15386.62891
+    },
+    "features_4m": {
+     "llvm_cost4_block32_rank4": 7993.253906,
+     "llvm_interleaved_self_scalar16": 7204.894531,
+     "packed_lanes_16_layout_hot_dfs": 7747.632812,
+     "probtiled_lanes_8_mode_gather_early_exit_false": 11989.52344,
+     "qs": 9448.96875,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 5628.492188,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 7307.988281,
+     "vpred_lanes_16_layout_level": 5695.960938,
+     "tl2cgen_profiled_lto_prepared": 15923.60547
+    },
+    "data_pressure_2m": {
+     "llvm_cost4_block32_rank4": 13469.82812,
+     "llvm_interleaved_self_scalar16": 11228.10938,
+     "packed_lanes_16_layout_hot_dfs": 12348.61328,
+     "probtiled_lanes_8_mode_gather_early_exit_false": 20504.61719,
+     "qs": 15650.87109,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 6882.898438,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 12905.10156,
+     "vpred_lanes_16_layout_level": 7398.460938,
+     "tl2cgen_profiled_lto_prepared": 27542.08594
+    },
+    "code_pressure": {
+     "llvm_cost4_block32_rank4": 8149.210938,
+     "llvm_interleaved_self_scalar16": 7569.878906,
+     "packed_lanes_16_layout_hot_dfs": 7543.710938,
+     "probtiled_lanes_8_mode_gather_early_exit_false": 14994.28125,
+     "qs": 10798.44531,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 5760.148438,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 7380.417969,
+     "vpred_lanes_16_layout_level": 7002.742188,
+     "tl2cgen_profiled_lto_prepared": 15757.1875
+    },
+    "mixed_pressure": {
+     "llvm_cost4_block32_rank4": 14461.70703,
+     "llvm_interleaved_self_scalar16": 13654.60547,
+     "packed_lanes_16_layout_hot_dfs": 13260.80469,
+     "probtiled_lanes_8_mode_gather_early_exit_false": 22451.21094,
+     "qs": 16608.68359,
+     "tiled_lanes_8_tile_levels_2_mode_insert": 7796.210938,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 14297.45312,
+     "vpred_lanes_16_layout_level": 10114.27344,
+     "tl2cgen_profiled_lto_prepared": 28297.0625
+    }
+   }
+  },
+  "300x8": {
+   "reference": "llvm_interleaved_self_scalar16",
+   "profiles": {
+    "hot_control": {
+     "selected": "vpred_lanes_16_layout_level",
+     "evaluation": {
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        3789.8,
+        3880.8,
+        3866.0
+       ],
+       "model_p99_ns": [
+        11946,
+        14210,
+        10817
+       ],
+       "pipeline_block_median_ns": [
+        3314.2,
+        3326.8,
+        3327.4
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        12791.0,
+        12817.1,
+        12653.0
+       ],
+       "model_p99_ns": [
+        39236,
+        38272,
+        46007
+       ],
+       "pipeline_block_median_ns": [
+        12843.0,
+        12588.9,
+        12684.4
+       ]
+      },
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        3662.2,
+        3466.5,
+        3463.1
+       ],
+       "model_p99_ns": [
+        10234,
+        10420,
+        9595
+       ],
+       "pipeline_block_median_ns": [
+        2992.2,
+        3096.4,
+        2961.0
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        4156.1,
+        4172.7,
+        4181.6
+       ],
+       "model_p99_ns": [
+        10298,
+        15540,
+        11592
+       ],
+       "pipeline_block_median_ns": [
+        4230.0,
+        3877.8,
+        3931.3
+       ]
+      }
+     }
+    },
+    "features_64k": {
+     "selected": "tiled_lanes_8_tile_levels_3_mode_gather",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        3783.2,
+        3448.0,
+        3414.0
+       ],
+       "model_p99_ns": [
+        15530,
+        10669,
+        10293
+       ],
+       "pipeline_block_median_ns": [
+        3383.7,
+        3322.4,
+        3252.9
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        13461.6,
+        12896.7,
+        12892.9
+       ],
+       "model_p99_ns": [
+        42706,
+        40221,
+        42995
+       ],
+       "pipeline_block_median_ns": [
+        13883.7,
+        12821.8,
+        12880.1
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        4290.6,
+        4098.4,
+        4227.6
+       ],
+       "model_p99_ns": [
+        13359,
+        9703,
+        9271
+       ],
+       "pipeline_block_median_ns": [
+        4492.4,
+        4223.5,
+        4401.1
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        3814.2,
+        3569.6,
+        3703.1
+       ],
+       "model_p99_ns": [
+        18360,
+        10636,
+        18918
+       ],
+       "pipeline_block_median_ns": [
+        3957.7,
+        3566.6,
+        3590.4
+       ]
+      }
+     }
+    },
+    "features_4m": {
+     "selected": "tiled_lanes_8_tile_levels_3_mode_gather",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        3750.3,
+        3898.2,
+        4346.8
+       ],
+       "model_p99_ns": [
+        11140,
+        13189,
+        11218
+       ],
+       "pipeline_block_median_ns": [
+        4163.9,
+        4137.0,
+        4220.6
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        15195.9,
+        14406.1,
+        14431.0
+       ],
+       "model_p99_ns": [
+        51373,
+        51735,
+        52351
+       ],
+       "pipeline_block_median_ns": [
+        14876.9,
+        15613.1,
+        16635.1
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        4409.7,
+        4417.1,
+        4857.6
+       ],
+       "model_p99_ns": [
+        11542,
+        15906,
+        13256
+       ],
+       "pipeline_block_median_ns": [
+        5269.5,
+        5042.3,
+        5563.3
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        4357.3,
+        4196.7,
+        4394.8
+       ],
+       "model_p99_ns": [
+        20821,
+        14515,
+        14063
+       ],
+       "pipeline_block_median_ns": [
+        4827.2,
+        4527.3,
+        4498.7
+       ]
+      }
+     }
+    },
+    "data_pressure_2m": {
+     "selected": "tiled_lanes_8_tile_levels_3_mode_gather",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        6390.6,
+        7446.6,
+        7751.7
+       ],
+       "model_p99_ns": [
+        21215,
+        25755,
+        22705
+       ],
+       "pipeline_block_median_ns": [
+        51163.7,
+        59390.3,
+        72570.2
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        23931.0,
+        26353.1,
+        27925.8
+       ],
+       "model_p99_ns": [
+        57295,
+        62320,
+        57078
+       ],
+       "pipeline_block_median_ns": [
+        73359.4,
+        79569.2,
+        103019.1
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        7784.5,
+        8810.6,
+        9409.0
+       ],
+       "model_p99_ns": [
+        25249,
+        27079,
+        28813
+       ],
+       "pipeline_block_median_ns": [
+        54608.8,
+        58062.2,
+        75427.3
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        8333.3,
+        8461.1,
+        9273.5
+       ],
+       "model_p99_ns": [
+        30505,
+        26390,
+        25763
+       ],
+       "pipeline_block_median_ns": [
+        52474.9,
+        59983.1,
+        78245.5
+       ]
+      }
+     }
+    },
+    "code_pressure": {
+     "selected": "tiled_lanes_8_tile_levels_3_mode_gather",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        4148.2,
+        4497.4,
+        4144.4
+       ],
+       "model_p99_ns": [
+        14556,
+        17436,
+        12747
+       ],
+       "pipeline_block_median_ns": [
+        19276.5,
+        19623.8,
+        18376.9
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        15036.5,
+        17241.8,
+        15544.2
+       ],
+       "model_p99_ns": [
+        47236,
+        55675,
+        49535
+       ],
+       "pipeline_block_median_ns": [
+        30773.0,
+        33093.1,
+        29820.6
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        5558.9,
+        5573.4,
+        5112.2
+       ],
+       "model_p99_ns": [
+        20092,
+        20794,
+        20213
+       ],
+       "pipeline_block_median_ns": [
+        21840.9,
+        20033.1,
+        19699.9
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        6657.8,
+        5096.7,
+        5083.9
+       ],
+       "model_p99_ns": [
+        27313,
+        20492,
+        19204
+       ],
+       "pipeline_block_median_ns": [
+        20856.7,
+        19527.6,
+        19641.0
+       ]
+      }
+     }
+    },
+    "mixed_pressure": {
+     "selected": "tiled_lanes_8_tile_levels_3_mode_gather",
+     "evaluation": {
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        7316.1,
+        7370.8,
+        7317.3
+       ],
+       "model_p99_ns": [
+        24559,
+        23838,
+        21771
+       ],
+       "pipeline_block_median_ns": [
+        76672.5,
+        74673.6,
+        73675.1
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        25261.1,
+        25435.6,
+        25373.4
+       ],
+       "model_p99_ns": [
+        59906,
+        62311,
+        60603
+       ],
+       "pipeline_block_median_ns": [
+        103030.5,
+        100743.2,
+        98487.3
+       ]
+      },
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        9227.6,
+        9839.8,
+        9028.8
+       ],
+       "model_p99_ns": [
+        32805,
+        34277,
+        27888
+       ],
+       "pipeline_block_median_ns": [
+        74999.9,
+        79030.7,
+        77887.4
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        9632.3,
+        8846.3,
+        9341.1
+       ],
+       "model_p99_ns": [
+        30466,
+        26413,
+        33033
+       ],
+       "pipeline_block_median_ns": [
+        77336.3,
+        83063.9,
+        77336.7
+       ]
+      }
+     }
+    }
+   },
+   "tuning": {
+    "hot_control": {
+     "llvm_cost4_block32_rank4": 7588.730469,
+     "llvm_interleaved_self_scalar16": 4642.839844,
+     "packed_lanes_16_layout_forest": 6146.566406,
+     "probtiled_lanes_8_mode_insert": 8446.414062,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 4515.363281,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 5957.84375,
+     "vpred_lanes_16_layout_level": 4193.253906,
+     "tl2cgen_profiled_lto_prepared": 12802.37891
+    },
+    "features_64k": {
+     "llvm_cost4_block32_rank4": 7989.640625,
+     "llvm_interleaved_self_scalar16": 4522.464844,
+     "packed_lanes_16_layout_forest": 6098.839844,
+     "probtiled_lanes_8_mode_insert": 8077.667969,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 4313.757812,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 5940.503906,
+     "vpred_lanes_16_layout_level": 4271.203125,
+     "tl2cgen_profiled_lto_prepared": 13000.96094
+    },
+    "features_4m": {
+     "llvm_cost4_block32_rank4": 8686.796875,
+     "llvm_interleaved_self_scalar16": 5268.367188,
+     "packed_lanes_16_layout_forest": 6373.574219,
+     "probtiled_lanes_8_mode_insert": 10102.58203,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 4286.292969,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 5756.144531,
+     "vpred_lanes_16_layout_level": 4820.46875,
+     "tl2cgen_profiled_lto_prepared": 14739.12891
+    },
+    "data_pressure_2m": {
+     "llvm_cost4_block32_rank4": 16607.16406,
+     "llvm_interleaved_self_scalar16": 9179.121094,
+     "packed_lanes_16_layout_forest": 9814.914062,
+     "probtiled_lanes_8_mode_insert": 16906.31641,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 8017.585938,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 10421.27344,
+     "vpred_lanes_16_layout_level": 9067.042969,
+     "tl2cgen_profiled_lto_prepared": 26368.48828
+    },
+    "code_pressure": {
+     "llvm_cost4_block32_rank4": 8749.429688,
+     "llvm_interleaved_self_scalar16": 4878.160156,
+     "packed_lanes_16_layout_forest": 7505.851562,
+     "probtiled_lanes_8_mode_insert": 13393.00391,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 5088.207031,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 8207.816406,
+     "vpred_lanes_16_layout_level": 6223.539062,
+     "tl2cgen_profiled_lto_prepared": 15300.44141
+    },
+    "mixed_pressure": {
+     "llvm_cost4_block32_rank4": 17613.63672,
+     "llvm_interleaved_self_scalar16": 9021.375,
+     "packed_lanes_16_layout_forest": 9951.957031,
+     "probtiled_lanes_8_mode_insert": 18133.83594,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 7664.09375,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_9": 10195.54688,
+     "vpred_lanes_16_layout_level": 9168.632812,
+     "tl2cgen_profiled_lto_prepared": 25855.94531
+    }
+   }
+  },
+  "200lg128": {
+   "reference": "llvm_interleaved_self_scalar16",
+   "profiles": {
+    "hot_control": {
+     "selected": "llvm_interleaved_self_scalar16",
+     "evaluation": {
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        4025.3,
+        3910.3,
+        4118.6
+       ],
+       "model_p99_ns": [
+        9961,
+        8377,
+        11240
+       ],
+       "pipeline_block_median_ns": [
+        4010.9,
+        4028.7,
+        4130.4
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        7842.6,
+        7496.4,
+        8158.8
+       ],
+       "model_p99_ns": [
+        29050,
+        26997,
+        27986
+       ],
+       "pipeline_block_median_ns": [
+        7623.8,
+        7110.6,
+        7915.9
+       ]
+      },
+      "probtiled_lanes_8_mode_gather": {
+       "model_mean_median_ns": [
+        4198.4,
+        4045.1,
+        4167.2
+       ],
+       "model_p99_ns": [
+        13143,
+        11465,
+        11123
+       ],
+       "pipeline_block_median_ns": [
+        3416.0,
+        3269.6,
+        3398.5
+       ]
+      },
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        4348.9,
+        4299.5,
+        4454.8
+       ],
+       "model_p99_ns": [
+        12190,
+        12032,
+        9951
+       ],
+       "pipeline_block_median_ns": [
+        3708.6,
+        3296.3,
+        3415.5
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        5715.6,
+        5274.8,
+        5752.4
+       ],
+       "model_p99_ns": [
+        15872,
+        13344,
+        21198
+       ],
+       "pipeline_block_median_ns": [
+        4969.6,
+        4797.3,
+        4792.6
+       ]
+      }
+     }
+    },
+    "features_64k": {
+     "selected": "llvm_interleaved_self_scalar16",
+     "evaluation": {
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        4341.6,
+        4316.2,
+        4202.1
+       ],
+       "model_p99_ns": [
+        17499,
+        12879,
+        10822
+       ],
+       "pipeline_block_median_ns": [
+        4371.3,
+        4334.8,
+        4312.7
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        9395.9,
+        8450.7,
+        8134.7
+       ],
+       "model_p99_ns": [
+        39128,
+        35866,
+        30542
+       ],
+       "pipeline_block_median_ns": [
+        9263.7,
+        8293.3,
+        8053.6
+       ]
+      },
+      "probtiled_lanes_8_mode_gather": {
+       "model_mean_median_ns": [
+        6520.0,
+        4725.8,
+        4937.4
+       ],
+       "model_p99_ns": [
+        27697,
+        18648,
+        16689
+       ],
+       "pipeline_block_median_ns": [
+        6336.0,
+        4045.3,
+        3928.5
+       ]
+      },
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        6734.0,
+        5122.7,
+        4992.2
+       ],
+       "model_p99_ns": [
+        25054,
+        13272,
+        17878
+       ],
+       "pipeline_block_median_ns": [
+        6278.0,
+        4408.0,
+        4157.2
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        8897.5,
+        6593.5,
+        6224.9
+       ],
+       "model_p99_ns": [
+        31850,
+        25503,
+        24888
+       ],
+       "pipeline_block_median_ns": [
+        6888.3,
+        5594.1,
+        5488.6
+       ]
+      }
+     }
+    },
+    "features_4m": {
+     "selected": "llvm_interleaved_self_scalar16",
+     "evaluation": {
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        4446.4,
+        4861.7,
+        4429.1
+       ],
+       "model_p99_ns": [
+        13037,
+        21272,
+        15758
+       ],
+       "pipeline_block_median_ns": [
+        5047.7,
+        5149.5,
+        5162.9
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        9500.1,
+        9145.9,
+        9428.9
+       ],
+       "model_p99_ns": [
+        41584,
+        41040,
+        41343
+       ],
+       "pipeline_block_median_ns": [
+        10281.1,
+        10539.6,
+        10203.9
+       ]
+      },
+      "probtiled_lanes_8_mode_gather": {
+       "model_mean_median_ns": [
+        5513.5,
+        6080.2,
+        5364.2
+       ],
+       "model_p99_ns": [
+        20573,
+        24960,
+        22310
+       ],
+       "pipeline_block_median_ns": [
+        5254.9,
+        5335.8,
+        5145.4
+       ]
+      },
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        5651.8,
+        6062.6,
+        5860.4
+       ],
+       "model_p99_ns": [
+        19324,
+        17256,
+        17971
+       ],
+       "pipeline_block_median_ns": [
+        5628.0,
+        5961.1,
+        6032.9
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        7254.6,
+        7981.0,
+        7751.7
+       ],
+       "model_p99_ns": [
+        29244,
+        34605,
+        29903
+       ],
+       "pipeline_block_median_ns": [
+        7708.4,
+        8563.6,
+        7917.5
+       ]
+      }
+     }
+    },
+    "data_pressure_2m": {
+     "selected": "llvm_interleaved_self_scalar16",
+     "evaluation": {
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        7200.3,
+        7956.5,
+        6715.0
+       ],
+       "model_p99_ns": [
+        26901,
+        28965,
+        25396
+       ],
+       "pipeline_block_median_ns": [
+        54746.8,
+        60275.2,
+        54541.0
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        15858.2,
+        16434.1,
+        15508.2
+       ],
+       "model_p99_ns": [
+        49801,
+        54051,
+        48745
+       ],
+       "pipeline_block_median_ns": [
+        62323.3,
+        68292.7,
+        61812.2
+       ]
+      },
+      "probtiled_lanes_8_mode_gather": {
+       "model_mean_median_ns": [
+        9853.2,
+        10906.1,
+        9470.0
+       ],
+       "model_p99_ns": [
+        33645,
+        40125,
+        27815
+       ],
+       "pipeline_block_median_ns": [
+        58923.3,
+        60440.2,
+        51278.5
+       ]
+      },
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        9740.2,
+        9790.2,
+        9214.1
+       ],
+       "model_p99_ns": [
+        31153,
+        37675,
+        27212
+       ],
+       "pipeline_block_median_ns": [
+        52035.3,
+        54923.2,
+        50670.1
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        13092.0,
+        12713.0,
+        12719.5
+       ],
+       "model_p99_ns": [
+        43209,
+        40205,
+        38467
+       ],
+       "pipeline_block_median_ns": [
+        62447.8,
+        63455,
+        59421.8
+       ]
+      }
+     }
+    },
+    "code_pressure": {
+     "selected": "llvm_interleaved_self_scalar16",
+     "evaluation": {
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        4646.4,
+        4431.3,
+        4858.9
+       ],
+       "model_p99_ns": [
+        16377,
+        15469,
+        14078
+       ],
+       "pipeline_block_median_ns": [
+        19932.6,
+        20809.7,
+        19609.1
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        9256.3,
+        9354.3,
+        9873.0
+       ],
+       "model_p99_ns": [
+        31975,
+        33116,
+        35307
+       ],
+       "pipeline_block_median_ns": [
+        23648.3,
+        26257.7,
+        25004.3
+       ]
+      },
+      "probtiled_lanes_8_mode_gather": {
+       "model_mean_median_ns": [
+        6769.9,
+        6654.8,
+        6423.5
+       ],
+       "model_p99_ns": [
+        27515,
+        20970,
+        25946
+       ],
+       "pipeline_block_median_ns": [
+        19276.8,
+        20910.5,
+        21458.0
+       ]
+      },
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        6598.7,
+        7918.9,
+        6980.7
+       ],
+       "model_p99_ns": [
+        21516,
+        23341,
+        22094
+       ],
+       "pipeline_block_median_ns": [
+        19212.5,
+        20009.2,
+        19744.9
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        7995.9,
+        8904.3,
+        12205.6
+       ],
+       "model_p99_ns": [
+        26826,
+        31164,
+        39597
+       ],
+       "pipeline_block_median_ns": [
+        21137.9,
+        22140.0,
+        22799.7
+       ]
+      }
+     }
+    },
+    "mixed_pressure": {
+     "selected": "llvm_interleaved_self_scalar16",
+     "evaluation": {
+      "llvm_interleaved_self_scalar16": {
+       "model_mean_median_ns": [
+        8127.6,
+        7231.5,
+        7444.0
+       ],
+       "model_p99_ns": [
+        25213,
+        26860,
+        23754
+       ],
+       "pipeline_block_median_ns": [
+        78517.6,
+        74300.9,
+        78552.8
+       ]
+      },
+      "tl2cgen_profiled_lto_prepared": {
+       "model_mean_median_ns": [
+        17849.3,
+        17447.0,
+        17074.0
+       ],
+       "model_p99_ns": [
+        49475,
+        52567,
+        50110
+       ],
+       "pipeline_block_median_ns": [
+        87247.2,
+        82632.2,
+        82192.0
+       ]
+      },
+      "probtiled_lanes_8_mode_gather": {
+       "model_mean_median_ns": [
+        11042.3,
+        10548.3,
+        10768.0
+       ],
+       "model_p99_ns": [
+        35690,
+        33164,
+        34934
+       ],
+       "pipeline_block_median_ns": [
+        79841.2,
+        73122.4,
+        74734.7
+       ]
+      },
+      "tiled_lanes_8_tile_levels_3_mode_gather": {
+       "model_mean_median_ns": [
+        9786.7,
+        10437.0,
+        11456.7
+       ],
+       "model_p99_ns": [
+        30552,
+        35060,
+        41344
+       ],
+       "pipeline_block_median_ns": [
+        82923.9,
+        69981.6,
+        77479.5
+       ]
+      },
+      "vpred_lanes_16_layout_level": {
+       "model_mean_median_ns": [
+        15016.5,
+        14255.7,
+        14185.4
+       ],
+       "model_p99_ns": [
+        47715,
+        51102,
+        47236
+       ],
+       "pipeline_block_median_ns": [
+        94603.1,
+        84367.5,
+        83910.5
+       ]
+      }
+     }
+    }
+   },
+   "tuning": {
+    "hot_control": {
+     "llvm_cost4_block32_rank4": 5346.324219,
+     "llvm_interleaved_self_scalar16": 4125.335938,
+     "packed_lanes_16_layout_frames": 4692.730469,
+     "probtiled_lanes_8_mode_gather": 5322.660156,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 5800.332031,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 5009.980469,
+     "vpred_lanes_16_layout_level": 6647.976562,
+     "tl2cgen_profiled_lto_prepared": 7909.289062
+    },
+    "features_64k": {
+     "llvm_cost4_block32_rank4": 5551.359375,
+     "llvm_interleaved_self_scalar16": 4144.332031,
+     "packed_lanes_16_layout_frames": 4945.28125,
+     "probtiled_lanes_8_mode_gather": 5332.972656,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 5594.59375,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 4838.09375,
+     "vpred_lanes_16_layout_level": 5971.253906,
+     "tl2cgen_profiled_lto_prepared": 7944.855469
+    },
+    "features_4m": {
+     "llvm_cost4_block32_rank4": 6056.457031,
+     "llvm_interleaved_self_scalar16": 4471.574219,
+     "packed_lanes_16_layout_frames": 6065.894531,
+     "probtiled_lanes_8_mode_gather": 6443.851562,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 6825.683594,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 5387.398438,
+     "vpred_lanes_16_layout_level": 9174.945312,
+     "tl2cgen_profiled_lto_prepared": 9091.640625
+    },
+    "data_pressure_2m": {
+     "llvm_cost4_block32_rank4": 11448.60156,
+     "llvm_interleaved_self_scalar16": 6750.824219,
+     "packed_lanes_16_layout_frames": 8593.644531,
+     "probtiled_lanes_8_mode_gather": 11444.04297,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 11172.78906,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 10202.76562,
+     "vpred_lanes_16_layout_level": 15066.74609,
+     "tl2cgen_profiled_lto_prepared": 16015.20703
+    },
+    "code_pressure": {
+     "llvm_cost4_block32_rank4": 5995.878906,
+     "llvm_interleaved_self_scalar16": 5181.734375,
+     "packed_lanes_16_layout_frames": 5728.558594,
+     "probtiled_lanes_8_mode_gather": 7353.210938,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 8095.179688,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 5154.777344,
+     "vpred_lanes_16_layout_level": 10221.40234,
+     "tl2cgen_profiled_lto_prepared": 9098.898438
+    },
+    "mixed_pressure": {
+     "llvm_cost4_block32_rank4": 12832.83984,
+     "llvm_interleaved_self_scalar16": 7500.167969,
+     "packed_lanes_16_layout_frames": 9173.464844,
+     "probtiled_lanes_8_mode_gather": 12695.74219,
+     "tiled_lanes_8_tile_levels_3_mode_gather": 10940.0625,
+     "tiled_lanes_8_tile_levels_3_mode_gather_top_levels_6": 11589,
+     "vpred_lanes_16_layout_level": 14850.31641,
+     "tl2cgen_profiled_lto_prepared": 17691.69531
+    }
+   }
+  }
+ }
+}
