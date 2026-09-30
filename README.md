@@ -3,13 +3,15 @@
 這是一個以 **單筆、單執行緒 CPU 推論** 為目標的 XGBoost → LLVM AOT 編譯原型。
 研究目標是超越 TL2cgen 產生的原生程式碼；目前的實作與測量只是一個起點，沒有跨模型、跨 CPU 的效能保證。
 
-初始測量見 [BENCHMARKS.md](BENCHMARKS.md)，後續自動選模與獨立評估見 [OPTIMIZATION.md](OPTIMIZATION.md)。目前完整套件 **935 項測試通過**，包含正確性、門檻編碼、PGO、baseline 介面、同 thread feature／cache 干擾與選模流程。[Cold 干擾](COLD_CACHE.md)、[混合樹遍歷](HYBRID_TRAVERSAL.md)、[跨樹交錯探索](INTERLEAVED_TRAVERSAL.md) 與 [資料布局探索](LAYOUT_TRAVERSAL.md) 均完成獨立 tuning／evaluation。
+初始測量見 [BENCHMARKS.md](BENCHMARKS.md)，後續自動選模與獨立評估見 [OPTIMIZATION.md](OPTIMIZATION.md)。目前完整套件 **970 項測試通過**，包含正確性、門檻編碼、PGO、baseline 介面、同 thread feature／cache 干擾與選模流程。[Cold 干擾](COLD_CACHE.md)、[混合樹遍歷](HYBRID_TRAVERSAL.md)、[跨樹交錯探索](INTERLEAVED_TRAVERSAL.md) 與 [資料布局探索](LAYOUT_TRAVERSAL.md) 均完成獨立 tuning／evaluation。
 
 Cold 情境的 [多目標選模實驗](MULTIOBJECTIVE_COLD.md) 已完成六情境、四個目標與七次獨立程序驗證：核心、pipeline 與 p99 可能需要不同配置，且部分 tuning 選擇在 holdout 退步。
 
 [模型感知 prefetch](PREFETCH_TRAVERSAL.md) 已完成多目標效能與新資料配對實驗，未確認穩定整體收益；預設保持關閉。
 
 [Leaf 分離表示](SEPARATED_LEAVES.md) 已通過正確性測試，模型表格 payload 約縮小 24%，但六情境／四目標量測沒有新 winner，同配置對照變慢，未改用新表示。
+
+[QuickScorer 特徵導向 lowering](QUICKSCORER.md) 是首個 x86-64 Linux 資料點，也與原型逐位元相同。100×4 的 dense 表變體在 hot／feature／code 情境的核心延遲比前輪最強配置低 5.5–23%，但在 data_pressure 慢 20%，六情境中有 3 個被選中；300×6 不適用。另外兩項發現：pairwise 累加診斷顯示 float32 依序累加鏈不是主要瓶頸；路徑隱含冗餘 split 數為 0。
 
 ## 已實作
 
@@ -132,6 +134,8 @@ predictor = Predictor(report["selected_library"])
 - `--traversal-prefetch none|roots|next|both`：實驗性的模型資料預取；root lookahead 用 `--traversal-prefetch-distance 1|2|4`，locality hint 用 `--traversal-prefetch-locality 0|1|2|3`。僅適用交錯遍歷，預設 none。
 - `--traversal-data-layout aos|soa|soa8`、`--traversal-alignment 16|64|128|4096`：控制交錯遍歷的 node 資料表示與對齊；lanes 支援至 32。`--traversal-load-schedule staged|direct|lane` 比較 LLVM 載入產生順序，預設 staged 保留原本 AoS 機器碼；布局與排程已完成獨立量測，但 mixed 排名不穩定，詳見 [LAYOUT_TRAVERSAL.md](LAYOUT_TRAVERSAL.md) 與 [SCHEDULE_TRAVERSAL.md](SCHEDULE_TRAVERSAL.md)。
 - `--machine-outliner`：Clang backend 嘗試共用重複的機器碼；預設關閉，本次 cold 選模沒有選中。
+- `--lowering quickscorer`：改用 QuickScorer bitvector lowering，由 Clang 編譯 C，並忽略樹 lowering 選項。`--qs-stride 0|1|2^k` 分別為 classic／dense／checkpoint，省略時依 `--qs-budget-bytes`（預設 256 KiB）選擇；rank 由 `--qs-rank-linear-max` 與 `--qs-rank-search two_level|binary` 控制。詳見 [QUICKSCORER.md](QUICKSCORER.md)。
+- `accumulation_order="pairwise_inexact"`（Python API）：**不精確**的診斷選項，只用於估計依序累加鏈成本；metadata 標記 `exact_accumulation_order: false`，不可部署。
 - `bucket_split` 會分開儲存正負數的 bucket directory，以額外整數操作換取較小常數表；仍保留精確門檻比較。
 
 `benchmarks.combine` 可從前一輪 **tuning 選定** 的配置探索組合，要求新的 tuning／evaluation 檔，並在定案後執行三個獨立 native process 確認結果。接著可用 `--mode bucket` 探索精確位元前綴分桶，及 `--mode prefix` 比較分桶粒度，兩者都需要新的 tuning／evaluation。詳見 [本輪探索報告](EXPLORATION_20260913.md)；Ubuntu 狀態與重現方式見 [UBUNTU_BENCHMARK.md](UBUNTU_BENCHMARK.md)。

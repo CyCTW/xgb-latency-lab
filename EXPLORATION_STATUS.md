@@ -88,6 +88,15 @@ Warm 結果來源：`results/{exploration,combined,bucket,prefix,directory}-maco
 - 兩模型原始表格 payload 降低 23.73%／24.63%，但每 lane 增加 leaf prefix 索引，是否更快待測。
 - 128 個新表示測試及 18 個 benchmark 測試通過，完整套件 **806 passed in 307.64s**。兩模型六情境／四目標已完成，沒有新 winner；固定 references 在 code／mixed 的核心平均比同配置 self-loop 慢約 14.8–43.8%（每配置七程序增加率中位數）。25 個新配置皆有預先綁定的同配置 self-loop 對照。
 
+## QuickScorer 與 x86（2026-09-30，已完成一輪）
+
+- 報告：[QUICKSCORER.md](QUICKSCORER.md)；數值：[reports/quickscorer-x86-20260930.json](reports/quickscorer-x86-20260930.json)。第一次在 x86-64 Linux（Xeon SPR KVM、clang 18）量測，不能與 M3 數字直接比較。
+- QuickScorer 有 classic、dense rank 表與 checkpoint 三種策略，與 LLVM 原型逐位元相同；新增 35 項測試，完整套件 **970 passed**。
+- 100×4：dense QS 與本機重建的前輪 winner 同場比較，hot／feature／code 核心低 5.5–23%，mixed 持平，data_pressure 高 20%；tuning 在 3/6 情境選中。300×6：六情境都選 interleaved scalar16，QS stride 8 比它高 4–75%。
+- Pairwise 累加診斷在 LLVM 與 QS 都沒有一致收益：依序 float32 累加鏈不是主要瓶頸，維持精確契約。
+- 路徑隱含冗餘 split 在兩個 hist 模型都是 0，不實作化簡。
+- 原環境缺 `libclang_rt.profile` 導致 PGO 測試失敗，安裝 `libclang-rt-18-dev` 後恢復。
+
 ## 尚未完成的方向
 
 - Leaf 分離的 64-bit packed traversal state 已實作並通過完整套件；靜態 spill／reload 減少，尚待固定三方配對的 cold 效能診斷。

@@ -51,7 +51,7 @@ def _cost_select_nodes(tree, counts, max_depth, branch_penalty):
 def _emit_trees(fn, indexed_trees, initial, *, select_depth, preload, counts, select_policy,
                 predicate_hoist_limit, leaf_table_bits, select_branch_penalty,
                 rank_thresholds, rank_strategy, rank_bucket_bits, compact_leaf_depth, accumulation_batch,
-                hybrid_plan, hybrid_fn, rank_buffer=None):
+                hybrid_plan, hybrid_fn, rank_buffer=None, accumulation_order="sequential"):
     f32, i32 = ir.FloatType(), ir.IntType(32)
     x = fn.args[0]
     trees_only = [tree for _, tree in indexed_trees]
@@ -228,10 +228,17 @@ def _emit_trees(fn, indexed_trees, initial, *, select_depth, preload, counts, se
         for v, block in incoming:
             value.add_incoming(v, block)
         pending_values.append(value)
+        if accumulation_order == "pairwise_inexact":
+            continue
         if len(pending_values) >= accumulation_batch:
             for pending in pending_values:
                 total = b.fadd(total, pending)
             pending_values.clear()
+    if accumulation_order == "pairwise_inexact":
+        # Diagnostic only: reassociates the sum to expose the serial fadd chain's cost.
+        while len(pending_values) > 1:
+            pending_values = [b.fadd(pending_values[i], pending_values[i + 1]) if i + 1 < len(pending_values)
+                              else pending_values[i] for i in range(0, len(pending_values), 2)]
     for pending in pending_values:
         total = b.fadd(total, pending)
     return b, total, len(cached), table_stats
@@ -252,13 +259,18 @@ def compile_model(model_path: str | Path, output_dir: str | Path, *,
                   traversal_data_layout: str = "aos", traversal_alignment: int = 16,
                   traversal_load_schedule: str = "staged", traversal_prefetch: str = "none",
                   traversal_prefetch_distance: int = 1, traversal_prefetch_locality: int = 3,
-                  traversal_leaf_state: str = "split") -> Path:
+                  traversal_leaf_state: str = "split", accumulation_order: str = "sequential") -> Path:
     """Emit .o/.so or .dylib, LLVM IR, assembly and metadata for the host CPU.
 
     Small subtrees become eager LLVM selects; others remain control flow.
-    No fast-math, reassociation, missing-value assumptions, or tree reordering.
+    No fast-math, reassociation, missing-value assumptions, or tree reordering
+    (except the explicitly inexact accumulation_order="pairwise_inexact" diagnostic).
     Output: void predict_row(const float *features, float *raw_margin).
     """
+    if accumulation_order not in {"sequential", "pairwise_inexact"}:
+        raise ValueError("accumulation_order must be sequential or pairwise_inexact")
+    if accumulation_order != "sequential" and (traversal_lanes or tree_block_size or accumulation_batch != 1):
+        raise ValueError("pairwise_inexact accumulation is a single-function diagnostic; disable traversal, blocks and batching")
     if traversal_prefetch not in {"none", "roots", "next", "both"}:
         raise ValueError("traversal_prefetch must be none, roots, next or both")
     if traversal_prefetch != "none" and not traversal_lanes:
@@ -367,7 +379,8 @@ def compile_model(model_path: str | Path, output_dir: str | Path, *,
                     leaf_table_bits=leaf_table_bits, select_branch_penalty=select_branch_penalty)
     lowering["rank_thresholds"] = rank_thresholds
     lowering.update(rank_strategy=rank_strategy, rank_bucket_bits=rank_bucket_bits, compact_leaf_depth=compact_leaf_depth,
-                    accumulation_batch=accumulation_batch, hybrid_plan=hybrid_plan, hybrid_fn=hybrid_fn)
+                    accumulation_batch=accumulation_batch, hybrid_plan=hybrid_plan, hybrid_fn=hybrid_fn,
+                    accumulation_order=accumulation_order)
     hoisted_count = 0
     table_count = table_bytes = 0
     eager_regions = 0
@@ -464,6 +477,7 @@ def compile_model(model_path: str | Path, output_dir: str | Path, *,
                 "rank_feature_limit": rank_feature_limit,
                 "rank_strategy": rank_strategy, "rank_bucket_bits": rank_bucket_bits, "compact_leaf_depth": compact_leaf_depth,
                 "compact_leaf_tables_in_ir": compact_count, "accumulation_batch": accumulation_batch,
+                "accumulation_order": accumulation_order, "exact_accumulation_order": accumulation_order == "sequential",
                 "optimization": optimization, "machine_outliner": machine_outliner,
                 "hybrid_depth": hybrid_depth, "hybrid_max_probability": hybrid_max_probability,
                 "hybrid_subtrees": len(hybrid_plan.roots), "hybrid_nodes": len(hybrid_plan.records),
