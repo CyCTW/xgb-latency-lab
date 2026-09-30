@@ -2,6 +2,7 @@ import argparse
 import numpy as np
 
 from .compiler import compile_model
+from .quickscorer import compile_quickscorer
 
 
 def main():
@@ -42,7 +43,21 @@ def main():
                    help="Cost-policy branch penalty in comparison-equivalent units")
     p.add_argument("--backend", choices=["llvmlite","clang"], default="llvmlite")
     p.add_argument("--calibration", help="Float32-compatible .npy matrix for branch weights")
+    p.add_argument("--lowering", choices=["tree", "quickscorer"], default="tree",
+                   help="quickscorer: feature-major bitvector lowering compiled by Clang; ignores tree options")
+    p.add_argument("--qs-stride", type=int, default=None,
+                   help="QuickScorer checkpoint stride: 0 classic loop, 1 dense table; default picks by budget")
+    p.add_argument("--qs-budget-bytes", type=int, default=256 * 1024,
+                   help="QuickScorer checkpoint-table budget used when --qs-stride is omitted")
+    p.add_argument("--qs-rank-linear-max", type=int, default=64,
+                   help="QuickScorer: count thresholds linearly up to this many per feature")
+    p.add_argument("--qs-rank-search", choices=["two_level", "binary"], default="two_level")
     args = p.parse_args()
+    if args.lowering == "quickscorer":
+        print(compile_quickscorer(args.model, args.output_dir, stride=args.qs_stride,
+                                  dense_budget_bytes=args.qs_budget_bytes, rank_linear_max=args.qs_rank_linear_max,
+                                  rank_search=args.qs_rank_search))
+        return
     print(compile_model(args.model, args.output_dir, select_depth=args.select_depth,
                         preload=args.preload,backend=args.backend,
                         tree_block_size=args.tree_block_size,select_policy=args.select_policy,

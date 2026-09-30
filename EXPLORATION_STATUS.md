@@ -88,6 +88,36 @@ Warm 結果來源：`results/{exploration,combined,bucket,prefix,directory}-maco
 - 兩模型原始表格 payload 降低 23.73%／24.63%，但每 lane 增加 leaf prefix 索引，是否更快待測。
 - 128 個新表示測試及 18 個 benchmark 測試通過，完整套件 **806 passed in 307.64s**。兩模型六情境／四目標已完成，沒有新 winner；固定 references 在 code／mixed 的核心平均比同配置 self-loop 慢約 14.8–43.8%（每配置七程序增加率中位數）。25 個新配置皆有預先綁定的同配置 self-loop 對照。
 
+## QuickScorer 與 x86（2026-09-30，已完成一輪）
+
+- 報告：[QUICKSCORER.md](QUICKSCORER.md)；數值：[reports/quickscorer-x86-20260930.json](reports/quickscorer-x86-20260930.json)。第一次在 x86-64 Linux（Xeon SPR KVM、clang 18）量測，不能與 M3 數字直接比較。
+- QuickScorer 有 classic、dense rank 表與 checkpoint 三種策略，與 LLVM 原型逐位元相同；新增 35 項測試，完整套件 **970 passed**。
+- 100×4：dense QS 與本機重建的前輪 winner 同場比較，hot／feature／code 核心低 5.5–23%，mixed 持平，data_pressure 高 20%；tuning 在 3/6 情境選中。300×6：六情境都選 interleaved scalar16，QS stride 8 比它高 4–75%。
+- Pairwise 累加診斷在 LLVM 與 QS 都沒有一致收益：依序 float32 累加鏈不是主要瓶頸，維持精確契約。
+- 路徑隱含冗餘 split 在兩個 hist 模型都是 0，不實作化簡。
+- 原環境缺 `libclang_rt.profile` 導致 PGO 測試失敗，安裝 `libclang-rt-18-dev` 後恢復。
+
+## Tiling 延伸與干擾驗證（2026-10-01，已完成一輪）
+
+- 報告：[COLD_TILING.md](COLD_TILING.md)；數值：[reports/cold-tiling-x86-20261001.json](reports/cold-tiling-x86-20261001.json)、[reports/tiling-round3-x86-20261001.json](reports/tiling-round3-x86-20261001.json)。
+- 新增 `top_levels` 上層 tiling 混合與 `probtiled.py`；完整套件 **1143 passed**。
+- 六情境 cold：300×6／1000×4／300×8 的 18 個情境核心延遲都比前輪最佳 LLVM 低 12–47%（每情境 3/3 程序）；100×4 在 data／mixed 改選 tiling（−24%／−31%）；lossguide 仍以 LLVM 交錯最佳。
+- 上層混合在 lossguide cold tuning 勝過完整 tiling（5/6 情境），但仍不及 LLVM；probtiled 只在 lossguide warm 勝出（−4.4%）。
+
+## Tree tiling（2026-09-30，已完成一輪）
+
+- 報告：[TILING.md](TILING.md)；數值：[reports/tiling-x86-20260930.json](reports/tiling-x86-20260930.json)。
+- `tiled.py`：k=2／3 tile、固定查表、scalar／gather／insert；五個模型逐位元相同，完整套件 **1090 passed**。
+- 第二輪自動調參（5 次確認＋5 次 evaluation）：300×6、1000×4、300×8、lossguide 都選中 tiling，比 VPred 快 12–29%，比前輪最佳 LLVM 快 10–34%（lossguide 只在 5 次程序中贏 3 次）。100×4 仍由 QS／`cost4_block32_rank4` 領先。
+
+## Batch=1 方法總比較（2026-09-30，已完成一輪）
+
+- 報告：[BATCH1_STUDY.md](BATCH1_STUDY.md)；數值：[reports/batch1-study-x86-20260930.json](reports/batch1-study-x86-20260930.json)。
+- 新增 C lowering：`vpred`、`packed`（bfs／dfs／hot_dfs／frames／forest）、`rapidscorer`、`direct`、`blockmix`；新增 79 項測試，完整套件 **1049 passed**。
+- 自動調參器 `benchmarks.autotune`：tuning → 3 次程序確認 → 凍結 → evaluation，指標為 TSC ticks；五個模型已完成。
+- VPred 在完整深度模型勝出（−12%～−17%）；QS 在 100×4 持平；lossguide 的 tuning 選擇在 holdout 輸 10%。
+- RapidScorer、跨樹 SIMD（AVX-512）、機率導向布局、連續區塊混用都沒有一致收益。
+
 ## 尚未完成的方向
 
 - Leaf 分離的 64-bit packed traversal state 已實作並通過完整套件；靜態 spill／reload 減少，尚待固定三方配對的 cold 效能診斷。
