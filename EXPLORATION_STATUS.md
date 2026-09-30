@@ -97,6 +97,14 @@ Warm 結果來源：`results/{exploration,combined,bucket,prefix,directory}-maco
 - 路徑隱含冗餘 split 在兩個 hist 模型都是 0，不實作化簡。
 - 原環境缺 `libclang_rt.profile` 導致 PGO 測試失敗，安裝 `libclang-rt-18-dev` 後恢復。
 
+## Batch=1 方法總比較（2026-09-30，已完成一輪）
+
+- 報告：[BATCH1_STUDY.md](BATCH1_STUDY.md)；數值：[reports/batch1-study-x86-20260930.json](reports/batch1-study-x86-20260930.json)。
+- 新增 C lowering：`vpred`、`packed`（bfs／dfs／hot_dfs／frames／forest）、`rapidscorer`、`direct`、`blockmix`；新增 79 項測試，完整套件 **1049 passed**。
+- 自動調參器 `benchmarks.autotune`：tuning → 3 次程序確認 → 凍結 → evaluation，指標為 TSC ticks；五個模型已完成。
+- VPred 在完整深度模型勝出（−12%～−17%）；QS 在 100×4 持平；lossguide 的 tuning 選擇在 holdout 輸 10%。
+- RapidScorer、跨樹 SIMD（AVX-512）、機率導向布局、連續區塊混用都沒有一致收益。
+
 ## 尚未完成的方向
 
 - Leaf 分離的 64-bit packed traversal state 已實作並通過完整套件；靜態 spill／reload 減少，尚待固定三方配對的 cold 效能診斷。

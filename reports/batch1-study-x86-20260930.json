@@ -1,0 +1,1205 @@
+{
+ "date": "2026-09-30",
+ "host": "Intel Xeon (SPR family) KVM guest, 4 vCPU, nominal 2.10GHz, Ubuntu 24.04, clang 18.1.3; no pinning",
+ "metric": "block_median_ticks_per_row (TSC, nominal-rate ticks; 2.1 ticks/ns)",
+ "models": {
+  "100x4": {
+   "model": {
+    "path": "/tmp/claude-0/-home-user/d7ca807c-3011-5826-b3bf-59a07e55b958/scratchpad/m/100x4/model.json",
+    "num_trees": 100,
+    "max_leaves": 16,
+    "max_height": 4
+   },
+   "winner": "qs",
+   "tuning_first_pass": {
+    "llvm_select1_profiled_clang": 937.1,
+    "llvm_cost4_block32_rank4": 778.5,
+    "llvm_interleaved_self_scalar16": 1434.7,
+    "llvm_interleaved_self_vector8": 3983.0,
+    "llvm_interleaved_self_vector16": 3684.0,
+    "qs": 706.0,
+    "qs_stride_0": 2145.0,
+    "vpred_lanes_8_layout_tree": 1124.7,
+    "vpred_lanes_8_layout_level": 1113.9,
+    "vpred_lanes_16_layout_tree": 1398.3,
+    "vpred_lanes_16_layout_level": 1220.4,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 1328.3,
+    "packed_lanes_16_layout_dfs": 1431.4,
+    "packed_lanes_16_layout_bfs": 1523.3,
+    "packed_lanes_16_layout_hot_dfs": 1446.4,
+    "packed_lanes_16_layout_frames": 1434.0,
+    "packed_lanes_16_layout_forest": 1431.6,
+    "packed_lanes_8_layout_forest": 1370.4,
+    "rs": 3287.3,
+    "rs_dense_budget_bytes_262144": 2038.0,
+    "direct": 949.7,
+    "direct_select_depth_1": 924.8,
+    "mix_k2": 951.4,
+    "mix_k4": 824.9,
+    "tl2cgen_profiled_lto_prepared": 1934.1
+   },
+   "shortlist_medians": {
+    "qs": 717.9,
+    "llvm_cost4_block32_rank4": 737.6,
+    "mix_k4": 850.8,
+    "direct_select_depth_1": 978.2,
+    "llvm_select1_profiled_clang": 937.5,
+    "direct": 939.5
+   },
+   "block_search": {
+    "2": [
+     [
+      0,
+      50,
+      "direct:select_depth=1"
+     ],
+     [
+      50,
+      100,
+      "vpred:lanes=8,layout=level"
+     ]
+    ],
+    "4": [
+     [
+      0,
+      25,
+      "qs"
+     ],
+     [
+      25,
+      50,
+      "direct:select_depth=1"
+     ],
+     [
+      50,
+      75,
+      "direct:select_depth=1"
+     ],
+     [
+      75,
+      100,
+      "direct:select_depth=1"
+     ]
+    ]
+   },
+   "evaluation": {
+    "qs": {
+     "block_median_ticks_per_row": [
+      821.1875,
+      724.515625,
+      992.081543
+     ],
+     "block_median_ns_per_row": [
+      391.2302246,
+      345.0483398,
+      472.6599121
+     ],
+     "p50_ns": [
+      447,
+      374,
+      472
+     ],
+     "p99_ns": [
+      569,
+      625,
+      609
+     ]
+    },
+    "llvm_select1_profiled_clang": {
+     "block_median_ticks_per_row": [
+      1375.628418,
+      919.4311523,
+      1488.435547
+     ],
+     "block_median_ns_per_row": [
+      655.1000977,
+      437.9694824,
+      708.9489746
+     ],
+     "p50_ns": [
+      635,
+      494,
+      663
+     ],
+     "p99_ns": [
+      1225,
+      1057,
+      1295
+     ]
+    },
+    "llvm_cost4_block32_rank4": {
+     "block_median_ticks_per_row": [
+      842.4804688,
+      726.1347656,
+      994.2973633
+     ],
+     "block_median_ns_per_row": [
+      401.4074707,
+      345.8200684,
+      473.7019043
+     ],
+     "p50_ns": [
+      463,
+      372,
+      511
+     ],
+     "p99_ns": [
+      855,
+      778,
+      937
+     ]
+    },
+    "llvm_interleaved_self_scalar16": {
+     "block_median_ticks_per_row": [
+      1689.370117,
+      1520.069824,
+      2575.640137
+     ],
+     "block_median_ns_per_row": [
+      804.6223145,
+      724.2258301,
+      1226.645752
+     ],
+     "p50_ns": [
+      695,
+      692,
+      1260
+     ],
+     "p99_ns": [
+      1392,
+      1627,
+      1704
+     ]
+    },
+    "mix_k4": {
+     "block_median_ticks_per_row": [
+      1301.935547,
+      824.4682617,
+      1370.000488
+     ],
+     "block_median_ns_per_row": [
+      620.0634766,
+      392.6462402,
+      652.5405273
+     ],
+     "p50_ns": [
+      569,
+      410,
+      563
+     ],
+     "p99_ns": [
+      1036,
+      867,
+      1120
+     ]
+    },
+    "tl2cgen_profiled_lto_prepared": {
+     "block_median_ticks_per_row": [
+      2151.155762,
+      2015.212402,
+      2566.024902
+     ],
+     "block_median_ns_per_row": [
+      1024.560059,
+      959.9338379,
+      1222.280518
+     ],
+     "p50_ns": [
+      964,
+      967,
+      1069
+     ],
+     "p99_ns": [
+      2054,
+      2105,
+      2198
+     ]
+    }
+   }
+  },
+  "300x6": {
+   "model": {
+    "path": "/tmp/claude-0/-home-user/d7ca807c-3011-5826-b3bf-59a07e55b958/scratchpad/m/300x6/model.json",
+    "num_trees": 300,
+    "max_leaves": 64,
+    "max_height": 6
+   },
+   "winner": "mix_k2",
+   "tuning_first_pass": {
+    "llvm_select1_profiled_clang": 11024.3,
+    "llvm_cost4_block32_rank4": 8716.9,
+    "llvm_interleaved_self_scalar16": 6856.6,
+    "llvm_interleaved_self_vector8": 25465.1,
+    "llvm_interleaved_self_vector16": 23134.2,
+    "qs": 23731.2,
+    "qs_stride_0": 13532.0,
+    "vpred_lanes_8_layout_tree": 6166.7,
+    "vpred_lanes_8_layout_level": 6306.1,
+    "vpred_lanes_16_layout_tree": 6663.8,
+    "vpred_lanes_16_layout_level": 7850.1,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 5881.0,
+    "packed_lanes_16_layout_dfs": 6683.1,
+    "packed_lanes_16_layout_bfs": 6390.6,
+    "packed_lanes_16_layout_hot_dfs": 6076.1,
+    "packed_lanes_16_layout_frames": 7195.8,
+    "packed_lanes_16_layout_forest": 6141.0,
+    "packed_lanes_8_layout_forest": 7353.9,
+    "rs": 26482.2,
+    "rs_dense_budget_bytes_262144": 24938.3,
+    "direct": 10877.8,
+    "direct_select_depth_1": 10994.8,
+    "mix_k2": 5883.8,
+    "mix_k4": 6220.1,
+    "tl2cgen_profiled_lto_prepared": 14506.9
+   },
+   "shortlist_medians": {
+    "vpred_lanes_16_layout_tree_group_by_height_false": 6083.6,
+    "mix_k2": 5964.3,
+    "packed_lanes_16_layout_hot_dfs": 6736.5,
+    "packed_lanes_16_layout_forest": 6254.3,
+    "vpred_lanes_8_layout_tree": 7321.6,
+    "mix_k4": 7342.2
+   },
+   "block_search": {
+    "2": [
+     [
+      0,
+      150,
+      "vpred:lanes=8,layout=level"
+     ],
+     [
+      150,
+      300,
+      "vpred:lanes=8,layout=level"
+     ]
+    ],
+    "4": [
+     [
+      0,
+      75,
+      "vpred:lanes=8,layout=level"
+     ],
+     [
+      75,
+      150,
+      "vpred:lanes=8,layout=level"
+     ],
+     [
+      150,
+      225,
+      "vpred:lanes=8,layout=level"
+     ],
+     [
+      225,
+      300,
+      "vpred:lanes=8,layout=level"
+     ]
+    ]
+   },
+   "evaluation": {
+    "mix_k2": {
+     "block_median_ticks_per_row": [
+      5843.195801,
+      5687.143066,
+      5990.799316
+     ],
+     "block_median_ns_per_row": [
+      2782.650391,
+      2708.237549,
+      2852.996338
+     ],
+     "p50_ns": [
+      2720,
+      2706,
+      2752
+     ],
+     "p99_ns": [
+      5636,
+      5396,
+      6108
+     ]
+    },
+    "llvm_select1_profiled_clang": {
+     "block_median_ticks_per_row": [
+      10757.32471,
+      10386.55127,
+      11019.03174
+     ],
+     "block_median_ns_per_row": [
+      5122.87793,
+      4946.039551,
+      5247.506348
+     ],
+     "p50_ns": [
+      4906,
+      4823,
+      5005
+     ],
+     "p99_ns": [
+      10429,
+      9820,
+      11273
+     ]
+    },
+    "llvm_cost4_block32_rank4": {
+     "block_median_ticks_per_row": [
+      8009.717285,
+      7687.22998,
+      9320.378906
+     ],
+     "block_median_ns_per_row": [
+      3814.393066,
+      3661.005371,
+      4438.842041
+     ],
+     "p50_ns": [
+      3723,
+      3580,
+      3883
+     ],
+     "p99_ns": [
+      6944,
+      5828,
+      10626
+     ]
+    },
+    "llvm_interleaved_self_scalar16": {
+     "block_median_ticks_per_row": [
+      6622.890625,
+      6149.158691,
+      6843.000977
+     ],
+     "block_median_ns_per_row": [
+      3154.111084,
+      2928.20874,
+      3258.919189
+     ],
+     "p50_ns": [
+      2916,
+      2906,
+      2926
+     ],
+     "p99_ns": [
+      6458,
+      5639,
+      6235
+     ]
+    },
+    "qs": {
+     "block_median_ticks_per_row": [
+      22062.13086,
+      21097.68555,
+      21865.6748
+     ],
+     "block_median_ns_per_row": [
+      10506.23926,
+      10046.92676,
+      10412.76147
+     ],
+     "p50_ns": [
+      9881,
+      9933,
+      9800
+     ],
+     "p99_ns": [
+      23905,
+      21658,
+      35328
+     ]
+    },
+    "vpred_lanes_16_layout_tree_group_by_height_false": {
+     "block_median_ticks_per_row": [
+      5522.571777,
+      5411.932617,
+      6115.944336
+     ],
+     "block_median_ns_per_row": [
+      2629.90625,
+      2577.251465,
+      2912.512207
+     ],
+     "p50_ns": [
+      2571,
+      2565,
+      2600
+     ],
+     "p99_ns": [
+      6072,
+      6154,
+      5945
+     ]
+    },
+    "packed_lanes_16_layout_hot_dfs": {
+     "block_median_ticks_per_row": [
+      6043.307129,
+      5839.455078,
+      8385.788574
+     ],
+     "block_median_ns_per_row": [
+      2878.120361,
+      2780.874023,
+      3993.566162
+     ],
+     "p50_ns": [
+      2795,
+      2759,
+      2854
+     ],
+     "p99_ns": [
+      9644,
+      4847,
+      6416
+     ]
+    },
+    "tl2cgen_profiled_lto_prepared": {
+     "block_median_ticks_per_row": [
+      14103.771,
+      13982.72705,
+      14567.72949
+     ],
+     "block_median_ns_per_row": [
+      6716.413574,
+      6658.812012,
+      6937.353516
+     ],
+     "p50_ns": [
+      6536,
+      6416,
+      7031
+     ],
+     "p99_ns": [
+      15234,
+      14392,
+      25374
+     ]
+    }
+   }
+  },
+  "1000x4": {
+   "model": {
+    "path": "/tmp/claude-0/-home-user/d7ca807c-3011-5826-b3bf-59a07e55b958/scratchpad/m/1000x4/model.json",
+    "num_trees": 1000,
+    "max_leaves": 16,
+    "max_height": 4
+   },
+   "winner": "vpred_lanes_16_layout_level",
+   "tuning_first_pass": {
+    "llvm_select1_profiled_clang": 21220.4,
+    "llvm_cost4_block32_rank4": 14802.7,
+    "llvm_interleaved_self_scalar16": 14737.2,
+    "llvm_interleaved_self_vector8": 61361.5,
+    "llvm_interleaved_self_vector16": 56406.4,
+    "qs": 18885.3,
+    "qs_stride_0": 14065.6,
+    "vpred_lanes_8_layout_tree": 13074.5,
+    "vpred_lanes_8_layout_level": 12908.9,
+    "vpred_lanes_16_layout_tree": 16181.6,
+    "vpred_lanes_16_layout_level": 11857.3,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 13667.6,
+    "packed_lanes_16_layout_dfs": 16030.9,
+    "packed_lanes_16_layout_bfs": 18061.6,
+    "packed_lanes_16_layout_hot_dfs": 15899.9,
+    "packed_lanes_16_layout_frames": 15635.0,
+    "packed_lanes_16_layout_forest": 14401.1,
+    "packed_lanes_8_layout_forest": 17434.3,
+    "rs": 28205.4,
+    "rs_dense_budget_bytes_262144": 26578.3,
+    "direct": 20995.2,
+    "direct_select_depth_1": 24512.4,
+    "mix_k2": 15341.2,
+    "mix_k4": 15023.4,
+    "tl2cgen_profiled_lto_prepared": 31862.8
+   },
+   "shortlist_medians": {
+    "vpred_lanes_16_layout_level": 12639.4,
+    "vpred_lanes_8_layout_level": 13216.0,
+    "vpred_lanes_8_layout_tree": 12645.5,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 13825.2,
+    "qs_stride_0": 14231.3,
+    "packed_lanes_16_layout_forest": 15262.1
+   },
+   "block_search": {
+    "2": [
+     [
+      0,
+      500,
+      "vpred:lanes=8,layout=level"
+     ],
+     [
+      500,
+      1000,
+      "vpred:lanes=8,layout=level"
+     ]
+    ],
+    "4": [
+     [
+      0,
+      250,
+      "vpred:lanes=16,layout=tree"
+     ],
+     [
+      250,
+      500,
+      "vpred:lanes=8,layout=level"
+     ],
+     [
+      500,
+      750,
+      "vpred:lanes=8,layout=level"
+     ],
+     [
+      750,
+      1000,
+      "vpred:lanes=16,layout=tree"
+     ]
+    ]
+   },
+   "evaluation": {
+    "vpred_lanes_16_layout_level": {
+     "block_median_ticks_per_row": [
+      12672.87158,
+      12396.77539,
+      12677.78711
+     ],
+     "block_median_ns_per_row": [
+      6035.335205,
+      5903.762939,
+      6037.645752
+     ],
+     "p50_ns": [
+      5527,
+      5541,
+      5554
+     ],
+     "p99_ns": [
+      15640,
+      17325,
+      17728
+     ]
+    },
+    "llvm_select1_profiled_clang": {
+     "block_median_ticks_per_row": [
+      20895.66406,
+      20726.05176,
+      21911.35059
+     ],
+     "block_median_ns_per_row": [
+      9951.223389,
+      9870.329346,
+      10434.46387
+     ],
+     "p50_ns": [
+      9442,
+      9344,
+      9822
+     ],
+     "p99_ns": [
+      27188,
+      28505,
+      31443
+     ]
+    },
+    "llvm_cost4_block32_rank4": {
+     "block_median_ticks_per_row": [
+      15423.59717,
+      15335.40039,
+      15696.00635
+     ],
+     "block_median_ns_per_row": [
+      7345.178955,
+      7303.035156,
+      7474.776855
+     ],
+     "p50_ns": [
+      7304,
+      6886,
+      7488
+     ],
+     "p99_ns": [
+      24332,
+      21592,
+      24670
+     ]
+    },
+    "llvm_interleaved_self_scalar16": {
+     "block_median_ticks_per_row": [
+      16184.15137,
+      14901.89453,
+      14463.09473
+     ],
+     "block_median_ns_per_row": [
+      7707.491699,
+      7096.632812,
+      6887.738281
+     ],
+     "p50_ns": [
+      6748,
+      6758,
+      6668
+     ],
+     "p99_ns": [
+      19745,
+      31786,
+      17498
+     ]
+    },
+    "qs": {
+     "block_median_ticks_per_row": [
+      19934.4873,
+      19086.00928,
+      18514.42871
+     ],
+     "block_median_ns_per_row": [
+      9493.020264,
+      9090.48584,
+      8817.191162
+     ],
+     "p50_ns": [
+      8745,
+      8638,
+      8583
+     ],
+     "p99_ns": [
+      26212,
+      22519,
+      28671
+     ]
+    },
+    "vpred_lanes_8_layout_level": {
+     "block_median_ticks_per_row": [
+      13225.71484,
+      12949.40527,
+      12809.18848
+     ],
+     "block_median_ns_per_row": [
+      6298.474121,
+      6166.90332,
+      6100.135254
+     ],
+     "p50_ns": [
+      5899,
+      5932,
+      5815
+     ],
+     "p99_ns": [
+      12192,
+      17246,
+      15010
+     ]
+    },
+    "vpred_lanes_8_layout_tree": {
+     "block_median_ticks_per_row": [
+      12065.08252,
+      12608.47119,
+      12245.3623
+     ],
+     "block_median_ns_per_row": [
+      5745.503418,
+      6004.572021,
+      5831.44751
+     ],
+     "p50_ns": [
+      5630,
+      5592,
+      5613
+     ],
+     "p99_ns": [
+      16081,
+      11491,
+      18316
+     ]
+    },
+    "tl2cgen_profiled_lto_prepared": {
+     "block_median_ticks_per_row": [
+      34186.99951,
+      32801.87354,
+      32007.93896
+     ],
+     "block_median_ns_per_row": [
+      16280.5127,
+      15620.81104,
+      15242.84692
+     ],
+     "p50_ns": [
+      15087,
+      14560,
+      14223
+     ],
+     "p99_ns": [
+      43105,
+      42276,
+      40434
+     ]
+    }
+   }
+  },
+  "300x8": {
+   "model": {
+    "path": "/tmp/claude-0/-home-user/d7ca807c-3011-5826-b3bf-59a07e55b958/scratchpad/m/300x8/model.json",
+    "num_trees": 300,
+    "max_leaves": 227,
+    "max_height": 8
+   },
+   "winner": "vpred_lanes_16_layout_level",
+   "tuning_first_pass": {
+    "llvm_select1_profiled_clang": 23475.2,
+    "llvm_cost4_block32_rank4": 17619.6,
+    "llvm_interleaved_self_scalar16": 11126.8,
+    "llvm_interleaved_self_vector8": 39545.8,
+    "llvm_interleaved_self_vector16": 37578.2,
+    "vpred_lanes_8_layout_tree": 11867.2,
+    "vpred_lanes_8_layout_level": 10523.9,
+    "vpred_lanes_16_layout_tree": 9488.2,
+    "vpred_lanes_16_layout_level": 8485.8,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 13917.8,
+    "packed_lanes_16_layout_dfs": 9561.3,
+    "packed_lanes_16_layout_bfs": 10260.9,
+    "packed_lanes_16_layout_hot_dfs": 14552.6,
+    "packed_lanes_16_layout_frames": 15718.3,
+    "packed_lanes_16_layout_forest": 9574.7,
+    "packed_lanes_8_layout_forest": 13878.4,
+    "rs": 114952.5,
+    "rs_dense_budget_bytes_262144": 110359.4,
+    "direct": 23020.4,
+    "direct_select_depth_1": 21553.0,
+    "mix_k2": 10848.1,
+    "mix_k4": 15546.7,
+    "tl2cgen_profiled_lto_prepared": 28670.9
+   },
+   "shortlist_medians": {
+    "vpred_lanes_16_layout_level": 7555.9,
+    "vpred_lanes_16_layout_tree": 8350.0,
+    "packed_lanes_16_layout_dfs": 10332.4,
+    "packed_lanes_16_layout_forest": 9180.1,
+    "packed_lanes_16_layout_bfs": 11245.7,
+    "vpred_lanes_8_layout_level": 9131.8
+   },
+   "block_search": {
+    "2": [
+     [
+      0,
+      150,
+      "vpred:lanes=8,layout=level"
+     ],
+     [
+      150,
+      300,
+      "vpred:lanes=8,layout=level"
+     ]
+    ],
+    "4": [
+     [
+      0,
+      75,
+      "vpred:lanes=16,layout=tree"
+     ],
+     [
+      75,
+      150,
+      "vpred:lanes=8,layout=level"
+     ],
+     [
+      150,
+      225,
+      "vpred:lanes=8,layout=level"
+     ],
+     [
+      225,
+      300,
+      "vpred:lanes=8,layout=level"
+     ]
+    ]
+   },
+   "evaluation": {
+    "vpred_lanes_16_layout_level": {
+     "block_median_ticks_per_row": [
+      7538.711914,
+      8024.937988,
+      7103.080566
+     ],
+     "block_median_ns_per_row": [
+      3590.246582,
+      3821.798584,
+      3382.850342
+     ],
+     "p50_ns": [
+      3382,
+      3173,
+      3332
+     ],
+     "p99_ns": [
+      20151,
+      7988,
+      13097
+     ]
+    },
+    "llvm_select1_profiled_clang": {
+     "block_median_ticks_per_row": [
+      21448.01611,
+      21615.55908,
+      21112.99023
+     ],
+     "block_median_ns_per_row": [
+      10214.26978,
+      10293.66797,
+      10054.4458
+     ],
+     "p50_ns": [
+      9744,
+      9416,
+      9340
+     ],
+     "p99_ns": [
+      35504,
+      35662,
+      34175
+     ]
+    },
+    "llvm_cost4_block32_rank4": {
+     "block_median_ticks_per_row": [
+      15391.64551,
+      15786.16748,
+      18928.04004
+     ],
+     "block_median_ns_per_row": [
+      7330.1604,
+      7517.821533,
+      9014.228271
+     ],
+     "p50_ns": [
+      7177,
+      7407,
+      7557
+     ],
+     "p99_ns": [
+      27443,
+      28063,
+      27623
+     ]
+    },
+    "llvm_interleaved_self_scalar16": {
+     "block_median_ticks_per_row": [
+      8879.711914,
+      9085.567871,
+      10815.72168
+     ],
+     "block_median_ns_per_row": [
+      4229.084229,
+      4326.893555,
+      5150.781494
+     ],
+     "p50_ns": [
+      4300,
+      3925,
+      3972
+     ],
+     "p99_ns": [
+      20792,
+      10470,
+      14750
+     ]
+    },
+    "vpred_lanes_16_layout_tree": {
+     "block_median_ticks_per_row": [
+      7632.43457,
+      8265.602539,
+      8428.025879
+     ],
+     "block_median_ns_per_row": [
+      3634.973877,
+      3936.362793,
+      4013.793213
+     ],
+     "p50_ns": [
+      3529,
+      3632,
+      3575
+     ],
+     "p99_ns": [
+      15853,
+      11569,
+      15387
+     ]
+    },
+    "packed_lanes_16_layout_dfs": {
+     "block_median_ticks_per_row": [
+      9163.520996,
+      8782.283691,
+      8858.447754
+     ],
+     "block_median_ns_per_row": [
+      4364.035645,
+      4182.456299,
+      4218.718018
+     ],
+     "p50_ns": [
+      3886,
+      3926,
+      3843
+     ],
+     "p99_ns": [
+      22438,
+      10785,
+      10469
+     ]
+    },
+    "tl2cgen_profiled_lto_prepared": {
+     "block_median_ticks_per_row": [
+      26919.93408,
+      28264.6543,
+      30644.05371
+     ],
+     "block_median_ns_per_row": [
+      12820.15308,
+      13460.34253,
+      14593.15283
+     ],
+     "p50_ns": [
+      11760,
+      12377,
+      14181
+     ],
+     "p99_ns": [
+      40287,
+      43959,
+      53115
+     ]
+    }
+   }
+  },
+  "200lg128": {
+   "model": {
+    "path": "/tmp/claude-0/-home-user/d7ca807c-3011-5826-b3bf-59a07e55b958/scratchpad/m/200lg128/model.json",
+    "num_trees": 200,
+    "max_leaves": 128,
+    "max_height": 12
+   },
+   "winner": "packed_lanes_16_layout_bfs",
+   "tuning_first_pass": {
+    "llvm_select1_profiled_clang": 15006.3,
+    "llvm_cost4_block32_rank4": 10857.6,
+    "llvm_interleaved_self_scalar16": 8941.3,
+    "llvm_interleaved_self_vector8": 27743.1,
+    "llvm_interleaved_self_vector16": 26083.2,
+    "vpred_lanes_8_layout_tree": 14829.1,
+    "vpred_lanes_8_layout_level": 12686.9,
+    "vpred_lanes_16_layout_tree": 17513.0,
+    "vpred_lanes_16_layout_level": 10275.0,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 12044.4,
+    "packed_lanes_16_layout_dfs": 8512.5,
+    "packed_lanes_16_layout_bfs": 8245.4,
+    "packed_lanes_16_layout_hot_dfs": 8418.1,
+    "packed_lanes_16_layout_frames": 8247.9,
+    "packed_lanes_16_layout_forest": 9043.2,
+    "packed_lanes_8_layout_forest": 8862.4,
+    "rs": 52095.3,
+    "rs_dense_budget_bytes_262144": 57825.2,
+    "direct": 13438.0,
+    "direct_select_depth_1": 14511.4,
+    "mix_k2": 8872.0,
+    "mix_k4": 10751.8,
+    "tl2cgen_profiled_lto_prepared": 19497.0
+   },
+   "shortlist_medians": {
+    "packed_lanes_16_layout_bfs": 8577.7,
+    "packed_lanes_16_layout_frames": 8986.9,
+    "packed_lanes_16_layout_hot_dfs": 8652.7,
+    "packed_lanes_16_layout_dfs": 8780.9,
+    "packed_lanes_8_layout_forest": 9226.3,
+    "mix_k2": 8938.9
+   },
+   "block_search": {
+    "2": [
+     [
+      0,
+      100,
+      "packed:lanes=8,layout=hot_dfs"
+     ],
+     [
+      100,
+      200,
+      "packed:lanes=8,layout=hot_dfs"
+     ]
+    ],
+    "4": [
+     [
+      0,
+      50,
+      "packed:lanes=8,layout=hot_dfs"
+     ],
+     [
+      50,
+      100,
+      "packed:lanes=8,layout=hot_dfs"
+     ],
+     [
+      100,
+      150,
+      "packed:lanes=8,layout=hot_dfs"
+     ],
+     [
+      150,
+      200,
+      "direct:select_depth=1"
+     ]
+    ]
+   },
+   "evaluation": {
+    "packed_lanes_16_layout_bfs": {
+     "block_median_ticks_per_row": [
+      9233.726562,
+      9973.350586,
+      8424.739746
+     ],
+     "block_median_ns_per_row": [
+      4397.80127,
+      4749.76123,
+      4012.171875
+     ],
+     "p50_ns": [
+      3832,
+      3838,
+      3795
+     ],
+     "p99_ns": [
+      11266,
+      15708,
+      8378
+     ]
+    },
+    "llvm_select1_profiled_clang": {
+     "block_median_ticks_per_row": [
+      14500.74854,
+      14587.06641,
+      13430.50391
+     ],
+     "block_median_ns_per_row": [
+      6905.88916,
+      6947.159668,
+      6396.156982
+     ],
+     "p50_ns": [
+      6426,
+      6261,
+      6212
+     ],
+     "p99_ns": [
+      23565,
+      18301,
+      24397
+     ]
+    },
+    "llvm_cost4_block32_rank4": {
+     "block_median_ticks_per_row": [
+      11808.52979,
+      10718.17773,
+      10927.87354
+     ],
+     "block_median_ns_per_row": [
+      5623.877686,
+      5104.283447,
+      5204.58667
+     ],
+     "p50_ns": [
+      5201,
+      4870,
+      4772
+     ],
+     "p99_ns": [
+      17796,
+      19181,
+      11428
+     ]
+    },
+    "llvm_interleaved_self_scalar16": {
+     "block_median_ticks_per_row": [
+      8379.424805,
+      8397.751465,
+      10747.74561
+     ],
+     "block_median_ns_per_row": [
+      3990.55127,
+      3999.257812,
+      5118.484619
+     ],
+     "p50_ns": [
+      3808,
+      3792,
+      3808
+     ],
+     "p99_ns": [
+      11226,
+      12752,
+      8623
+     ]
+    },
+    "packed_lanes_16_layout_frames": {
+     "block_median_ticks_per_row": [
+      9185.651367,
+      9079.258789,
+      8595.25
+     ],
+     "block_median_ns_per_row": [
+      4374.785645,
+      4324.102295,
+      4093.549805
+     ],
+     "p50_ns": [
+      3878,
+      3829,
+      3816
+     ],
+     "p99_ns": [
+      13427,
+      12077,
+      8124
+     ]
+    },
+    "packed_lanes_16_layout_hot_dfs": {
+     "block_median_ticks_per_row": [
+      9109.126953,
+      9205.124512,
+      8352.297852
+     ],
+     "block_median_ns_per_row": [
+      4338.141602,
+      4383.876709,
+      3977.818604
+     ],
+     "p50_ns": [
+      3778,
+      3790,
+      3737
+     ],
+     "p99_ns": [
+      11086,
+      12563,
+      7584
+     ]
+    },
+    "tl2cgen_profiled_lto_prepared": {
+     "block_median_ticks_per_row": [
+      16482.7373,
+      17128.8833,
+      16494.36084
+     ],
+     "block_median_ns_per_row": [
+      7849.653809,
+      8157.624023,
+      7855.41333
+     ],
+     "p50_ns": [
+      7323,
+      7820,
+      7250
+     ],
+     "p99_ns": [
+      28637,
+      38796,
+      27607
+     ]
+    }
+   }
+  }
+ }
+}

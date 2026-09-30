@@ -150,7 +150,7 @@ def test_epitome_masks():
     wa, wb, ma, mb = _epitome(3, 7)
     assert (wa, wb) == (0, 0) and ma == mb == FULL & ~(0b1111 << 3)
     wa, wb, ma, mb = _epitome(60, 130)
-    assert (wa, wb) == (0, 2) and ma == (1 << 60) - 1 and mb == FULL & ~((1 << 3) - 1)
+    assert (wa, wb) == (0, 2) and ma == (1 << 60) - 1 and mb == FULL & ~0b11  # bits 128, 129
     assert _epitome(64, 128) == (1, 1, 0, 0)
 
 
