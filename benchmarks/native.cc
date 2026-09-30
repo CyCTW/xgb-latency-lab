@@ -14,6 +14,15 @@
 #include <string>
 #include <vector>
 
+#if defined(__x86_64__)
+#include <x86intrin.h>
+static inline uint64_t ticks() { return __rdtsc(); }
+#elif defined(__aarch64__)
+static inline uint64_t ticks() { uint64_t v; asm volatile("isb; mrs %0, cntvct_el0" : "=r"(v)); return v; }
+#else
+static inline uint64_t ticks() { return 0; }
+#endif
+
 using Clock = std::chrono::steady_clock;
 using Predict = void (*)(const float*, float*);
 using PredictTL = void (*)(const float*, int, float*);
@@ -24,7 +33,7 @@ struct Engine {
   Predict predict;
   PredictTL predict_tl;
   bool packed;
-  std::vector<double> calls, blocks;
+  std::vector<double> calls, blocks, block_ticks;
   double checksum = 0;
 };
 double ns(Clock::time_point a, Clock::time_point b) {
@@ -53,11 +62,14 @@ void measure(Engine& e, const float* data, size_t nf,
     e.calls.push_back(ns(start, stop)); checksum += out;
   }
   auto start = Clock::now();
+  const uint64_t t0 = ticks();
   for (size_t i = 0; i < samples; ++i) {
     call(data + indices[i]*nf, &out); checksum += out;
   }
+  const uint64_t t1 = ticks();
   auto stop = Clock::now();
   e.blocks.push_back(ns(start,stop)/samples);
+  e.block_ticks.push_back(double(t1-t0)/samples);
   e.checksum += checksum;
   sink = checksum;
 }
@@ -123,6 +135,7 @@ int main(int argc, char** argv) try {
               << ",\"p95_ns\":" << quantile(e.calls,.95)
               << ",\"p99_ns\":" << quantile(e.calls,.99)
               << ",\"block_median_ns_per_row\":" << quantile(e.blocks,.5)
+              << ",\"block_median_ticks_per_row\":" << quantile(e.block_ticks,.5)
               << ",\"block_ns_per_row\":[";
     for (size_t j = 0; j < e.blocks.size(); ++j) {
       if (j) std::cout << ',';

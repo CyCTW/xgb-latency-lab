@@ -28,17 +28,12 @@ metadata.
 """
 
 from dataclasses import dataclass
-import hashlib
-import json
 import math
 from pathlib import Path
-import platform
-import subprocess
-import sys
 import time
 
-import numpy as np
 
+from .cgen import array, build, hexf, signature
 from .model import Forest, Tree
 
 
@@ -51,11 +46,7 @@ class _Split:
     mask: int
 
 
-def _hexf(value: float) -> str:
-    value = float(np.float32(value))
-    if math.isnan(value):
-        return "__builtin_nanf(\"\")"
-    return value.hex() + "f"
+_hexf = hexf
 
 
 def _tree_layout(tree: Tree, word_bits: int) -> tuple[list[float], list[tuple[int, float, bool, int]]]:
@@ -124,14 +115,13 @@ def choose_stride(features: dict, word_bits: int, budget: int) -> int:
     return stride
 
 
-def _array(ctype: str, name: str, values, fmt=str, align: int = 64) -> str:
-    body = ",".join(fmt(v) for v in values) or "0"
-    return f"static const {ctype} {name}[] __attribute__((aligned({align}))) = {{{body}}};\n"
+_array = array
 
 
 def generate_c(forest: Forest, *, stride: int | None = None, dense_budget_bytes: int = 256 * 1024,
                rank_linear_max: int = 64, rank_search: str = "two_level",
-               summation: str = "sequential") -> tuple[str, dict]:
+               summation: str = "sequential", entry: str = "predict_row",
+               chained: bool = False) -> tuple[str, dict]:
     """``stride=0`` emits the classic row-dependent loop for every feature.
 
     Otherwise each feature stores the AND of every ``stride``-th prefix of its
@@ -141,6 +131,8 @@ def generate_c(forest: Forest, *, stride: int | None = None, dense_budget_bytes:
     """
     if summation not in {"sequential", "pairwise_inexact"}:
         raise ValueError("summation must be sequential or pairwise_inexact")
+    if chained and summation != "sequential":
+        raise ValueError("chained blocks require sequential summation")
     if not isinstance(rank_linear_max, int) or rank_linear_max < 0:
         raise ValueError("rank_linear_max must be a nonnegative integer")
     if rank_search not in {"two_level", "binary"}:
@@ -259,15 +251,14 @@ def generate_c(forest: Forest, *, stride: int | None = None, dense_budget_bytes:
                                      (tree_index, "NTREE", n_tree, str), (word, "NMASK", n_mask, hexw),
                                      (word, "CP", cp, hexw)]:
         src.append(_array(ctype, name, values, fmt))
-    src.append("\n__attribute__((visibility(\"default\")))\n"
-               "void predict_row(const float *row, float *raw_margin) {\n"
+    src.append(signature(entry, chained) +
                f"  {word} bv[{n_trees}] __attribute__((aligned(64)));\n"
                "  memset(bv, 0xff, sizeof bv);\n")
     src.extend(body)
     if summation == "sequential":
-        src.append(f"  float acc = {_hexf(forest.base_margin)};\n"
+        src.append(("" if chained else f"  float acc = {_hexf(forest.base_margin)};\n") +
                    f"  for (uint32_t t = 0; t < {n_trees}u; ++t) acc += LEAF[LEAF_OFFSET[t] + {ctz}(bv[t])];\n"
-                   "  *raw_margin = acc;\n}\n")
+                   + ("  return acc;\n}\n" if chained else "  *raw_margin = acc;\n}\n"))
     else:
         size = 1 << max(0, (n_trees - 1).bit_length())
         src.append(f"  float v[{size}] __attribute__((aligned(64)));\n"
@@ -296,29 +287,7 @@ def compile_quickscorer(model_path: str | Path, output_dir: str | Path, *, cc: s
     forest = Forest.load(model_path)
     source, stats = generate_c(forest, stride=stride, dense_budget_bytes=dense_budget_bytes,
                                rank_linear_max=rank_linear_max, rank_search=rank_search, summation=summation)
-    out = Path(output_dir).resolve()
-    out.mkdir(parents=True, exist_ok=True)
-    (out / "model.c").write_text(source)
-    native = "-mcpu=native" if platform.machine() in ("arm64", "aarch64") else "-march=native"
-    flags = ["-" + optimization, native, "-fPIC", "-fno-fast-math", "-ffp-contract=off", "-std=c11"]
-    lib = out / ("model.dylib" if sys.platform == "darwin" else "model.so")
-    subprocess.run([cc, *flags, "-c", str(out / "model.c"), "-o", str(out / "model.o")], check=True, capture_output=True)
-    subprocess.run([cc, *flags, "-S", str(out / "model.c"), "-o", str(out / "model.s")], check=True, capture_output=True)
-    subprocess.run([cc, "-dynamiclib" if sys.platform == "darwin" else "-shared",
-                    str(out / "model.o"), "-o", str(lib)], check=True, capture_output=True)
-    (out / "model.h").write_text(
-        '#pragma once\n#ifdef __cplusplus\nextern "C" {\n#endif\n'
-        '/* Dense float32, NaN missing; caller provides one output float. */\n'
-        'void predict_row(const float *features, float *raw_margin);\n'
-        '#ifdef __cplusplus\n}\n#endif\n')
-    metadata = {"format_version": 1, "lowering": "quickscorer", "num_feature": forest.num_feature,
-                "num_trees": len(forest.trees), "objective": forest.objective, "output": "raw_margin",
-                "base_margin": forest.base_margin,
-                "source_sha256": hashlib.sha256(Path(model_path).read_bytes()).hexdigest(),
-                "compiler": subprocess.check_output([cc, "--version"], text=True).splitlines()[0],
-                "flags": flags, "dense_budget_bytes": dense_budget_bytes, "rank_linear_max": rank_linear_max,
-                "summation": summation, "exact_accumulation_order": summation == "sequential",
-                **stats, "compile_seconds": time.perf_counter() - started,
-                "library_bytes": lib.stat().st_size}
-    (out / "metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
-    return lib
+    return build(source, forest, model_path, output_dir, lowering="quickscorer", cc=cc,
+                 optimization=optimization, started=started,
+                 extra={"dense_budget_bytes": dense_budget_bytes, "rank_linear_max": rank_linear_max,
+                        "summation": summation, "exact_accumulation_order": summation == "sequential", **stats})
