@@ -97,6 +97,12 @@ Warm 結果來源：`results/{exploration,combined,bucket,prefix,directory}-maco
 - 路徑隱含冗餘 split 在兩個 hist 模型都是 0，不實作化簡。
 - 原環境缺 `libclang_rt.profile` 導致 PGO 測試失敗，安裝 `libclang-rt-18-dev` 後恢復。
 
+## Tree tiling（2026-09-30，已完成一輪）
+
+- 報告：[TILING.md](TILING.md)；數值：[reports/tiling-x86-20260930.json](reports/tiling-x86-20260930.json)。
+- `tiled.py`：k=2／3 tile、固定查表、scalar／gather／insert；五個模型逐位元相同，完整套件 **1090 passed**。
+- 第二輪自動調參（5 次確認＋5 次 evaluation）：300×6、1000×4、300×8、lossguide 都選中 tiling，比 VPred 快 12–29%，比前輪最佳 LLVM 快 10–34%（lossguide 只在 5 次程序中贏 3 次）。100×4 仍由 QS／`cost4_block32_rank4` 領先。
+
 ## Batch=1 方法總比較（2026-09-30，已完成一輪）
 
 - 報告：[BATCH1_STUDY.md](BATCH1_STUDY.md)；數值：[reports/batch1-study-x86-20260930.json](reports/batch1-study-x86-20260930.json)。

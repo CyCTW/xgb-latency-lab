@@ -2,6 +2,8 @@
 
 ## 摘要
 
+> 後續：Treebeard 式 tiling 在第二輪勝過 VPred，見 [TILING.md](TILING.md)。
+
 本輪加入五種新的 C lowering、區塊混用與自動調參器，並在五個模型上完成 tuning → 確認 → evaluation。所有新 lowering 的輸出都與既有 LLVM 原型**逐位元相同**：依原樹順序 float32 累加，NaN、±inf、門檻及其相鄰值都經過驗證。
 
 | 模型 | 樹數×深度 | 自動調參選中 | evaluation 中位數 (ticks/row) | 前輪最佳 LLVM | 差異 |

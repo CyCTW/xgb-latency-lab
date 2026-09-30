@@ -3,7 +3,7 @@
 這是一個以 **單筆、單執行緒 CPU 推論** 為目標的 XGBoost → LLVM AOT 編譯原型。
 研究目標是超越 TL2cgen 產生的原生程式碼；目前的實作與測量只是一個起點，沒有跨模型、跨 CPU 的效能保證。
 
-初始測量見 [BENCHMARKS.md](BENCHMARKS.md)，後續自動選模與獨立評估見 [OPTIMIZATION.md](OPTIMIZATION.md)。目前完整套件 **1049 項測試通過**，包含正確性、門檻編碼、PGO、baseline 介面、同 thread feature／cache 干擾與選模流程。[Cold 干擾](COLD_CACHE.md)、[混合樹遍歷](HYBRID_TRAVERSAL.md)、[跨樹交錯探索](INTERLEAVED_TRAVERSAL.md) 與 [資料布局探索](LAYOUT_TRAVERSAL.md) 均完成獨立 tuning／evaluation。
+初始測量見 [BENCHMARKS.md](BENCHMARKS.md)，後續自動選模與獨立評估見 [OPTIMIZATION.md](OPTIMIZATION.md)。目前完整套件 **1090 項測試通過**，包含正確性、門檻編碼、PGO、baseline 介面、同 thread feature／cache 干擾與選模流程。[Cold 干擾](COLD_CACHE.md)、[混合樹遍歷](HYBRID_TRAVERSAL.md)、[跨樹交錯探索](INTERLEAVED_TRAVERSAL.md) 與 [資料布局探索](LAYOUT_TRAVERSAL.md) 均完成獨立 tuning／evaluation。
 
 Cold 情境的 [多目標選模實驗](MULTIOBJECTIVE_COLD.md) 已完成六情境、四個目標與七次獨立程序驗證：核心、pipeline 與 p99 可能需要不同配置，且部分 tuning 選擇在 holdout 退步。
 
@@ -14,6 +14,8 @@ Cold 情境的 [多目標選模實驗](MULTIOBJECTIVE_COLD.md) 已完成六情�
 [QuickScorer 特徵導向 lowering](QUICKSCORER.md) 是首個 x86-64 Linux 資料點，也與原型逐位元相同。100×4 的 dense 表變體在 hot／feature／code 情境的核心延遲比前輪最強配置低 5.5–23%，但在 data_pressure 慢 20%，六情境中有 3 個被選中；300×6 不適用。另外兩項發現：pairwise 累加診斷顯示 float32 依序累加鏈不是主要瓶頸；路徑隱含冗餘 split 數為 0。
 
 [Batch=1 方法總比較](BATCH1_STUDY.md) 加入 VPred、機率導向節點布局（tree framing／Forest Packing）、RapidScorer、直接 if/else、區塊混用與自動調參（`benchmarks.autotune`，TSC ticks 指標）。所有新 lowering 都與原型逐位元相同。在 x86 上，VPred 於 300×6／1000×4／300×8 比既有交錯遍歷快 12–17%；lossguide 不平衡樹則以既有交錯遍歷最佳。RapidScorer 與跨樹 SIMD 在所有模型都落後。
+
+[Treebeard 式 tree tiling](TILING.md)：在 VPred 完全樹上每 2–3 層合成一個 tile，用向量比較加上固定查表決定下一個 tile。自動調參在 300×6／1000×4／300×8／lossguide 都選中它，比 VPred 快 12–29%，比前輪最佳 LLVM 快 10–34%。
 
 ## 已實作
 

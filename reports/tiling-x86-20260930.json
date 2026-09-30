@@ -1,0 +1,2090 @@
+{
+ "date": "2026-09-30",
+ "round": "autotune2 (tiling added; 5 confirm / 5 evaluation processes; new tuning/evaluation rows)",
+ "host": "Intel Xeon (SPR family) KVM guest, 4 vCPU, nominal 2.10GHz, clang 18.1.3; no pinning",
+ "metric": "block_median_ticks_per_row (TSC)",
+ "models": {
+  "100x4": {
+   "winner": "qs",
+   "tuning_first_pass": {
+    "llvm_select1_profiled_clang": 919.0,
+    "llvm_cost4_block32_rank4": 704.6,
+    "llvm_interleaved_self_scalar16": 1606.2,
+    "llvm_interleaved_self_vector8": 4111.3,
+    "llvm_interleaved_self_vector16": 4654.6,
+    "qs": 721.6,
+    "qs_stride_0": 1894.1,
+    "vpred_lanes_8_layout_tree": 1128.5,
+    "vpred_lanes_8_layout_level": 1257.6,
+    "vpred_lanes_16_layout_tree": 2100.7,
+    "vpred_lanes_16_layout_level": 1237.8,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 1556.8,
+    "packed_lanes_16_layout_dfs": 1624.7,
+    "packed_lanes_16_layout_bfs": 1622.7,
+    "packed_lanes_16_layout_hot_dfs": 1521.2,
+    "packed_lanes_16_layout_frames": 1606.9,
+    "packed_lanes_16_layout_forest": 1444.4,
+    "packed_lanes_8_layout_forest": 1322.7,
+    "rs": 3533.7,
+    "rs_dense_budget_bytes_262144": 2315.7,
+    "direct": 949.9,
+    "direct_select_depth_1": 967.8,
+    "tiled_lanes_8_tile_levels_2_mode_scalar": 1601.4,
+    "tiled_lanes_8_tile_levels_2_mode_gather": 1190.6,
+    "tiled_lanes_8_tile_levels_2_mode_insert": 1076.8,
+    "tiled_lanes_8_tile_levels_3_mode_scalar": 1687.8,
+    "tiled_lanes_8_tile_levels_3_mode_gather": 1248.0,
+    "tiled_lanes_8_tile_levels_3_mode_insert": 1194.2,
+    "tiled_lanes_16_tile_levels_3_mode_scalar": 1991.7,
+    "tiled_lanes_16_tile_levels_3_mode_insert": 1299.7,
+    "mix_k2": 1450,
+    "mix_k4": 874.9,
+    "tl2cgen_profiled_lto_prepared": 1971.5
+   },
+   "shortlist_medians": {
+    "llvm_cost4_block32_rank4": 765.03125,
+    "qs": 738.9584961,
+    "mix_k4": 879.7236328,
+    "llvm_select1_profiled_clang": 996.5639648,
+    "direct": 1003.32373,
+    "direct_select_depth_1": 974.2207031
+   },
+   "evaluation": {
+    "qs": {
+     "block_median_ticks_per_row": [
+      710.9238281,
+      716.0307617,
+      708.1074219,
+      701.9594727,
+      832.3730469
+     ],
+     "block_median_ns_per_row": [
+      338.5712891,
+      341.0144043,
+      337.2272949,
+      334.3037109,
+      396.479248
+     ],
+     "p50_ns": [
+      376,
+      377,
+      372,
+      369,
+      411
+     ],
+     "p99_ns": [
+      563,
+      573,
+      537,
+      573,
+      700
+     ]
+    },
+    "llvm_select1_profiled_clang": {
+     "block_median_ticks_per_row": [
+      932.9165039,
+      946.0244141,
+      911.9155273,
+      964.6621094,
+      977.9443359
+     ],
+     "block_median_ns_per_row": [
+      444.6364746,
+      450.5324707,
+      434.2839355,
+      459.4030762,
+      465.7329102
+     ],
+     "p50_ns": [
+      527,
+      577,
+      481,
+      503,
+      537
+     ],
+     "p99_ns": [
+      1296,
+      1232,
+      972,
+      1059,
+      1163
+     ]
+    },
+    "llvm_cost4_block32_rank4": {
+     "block_median_ticks_per_row": [
+      705.8369141,
+      818.5483398,
+      727.230957,
+      709.0234375,
+      723.6982422
+     ],
+     "block_median_ns_per_row": [
+      336.1442871,
+      390.0339355,
+      346.338623,
+      337.7038574,
+      344.6877441
+     ],
+     "p50_ns": [
+      407,
+      434,
+      349,
+      348,
+      358
+     ],
+     "p99_ns": [
+      764,
+      896,
+      644,
+      713,
+      719
+     ]
+    },
+    "llvm_interleaved_self_scalar16": {
+     "block_median_ticks_per_row": [
+      1396.078613,
+      1707.717285,
+      1413.187988,
+      1418.704102,
+      1545.016113
+     ],
+     "block_median_ns_per_row": [
+      664.9208984,
+      813.5517578,
+      672.9868164,
+      675.8305664,
+      735.795166
+     ],
+     "p50_ns": [
+      691,
+      697,
+      690,
+      689,
+      693
+     ],
+     "p99_ns": [
+      1294,
+      1622,
+      1410,
+      1273,
+      2387
+     ]
+    },
+    "vpred_lanes_8_layout_tree": {
+     "block_median_ticks_per_row": [
+      1098.4375,
+      1268.467285,
+      1103.541016,
+      1094.222656,
+      1404.136719
+     ],
+     "block_median_ns_per_row": [
+      523.3059082,
+      604.3366699,
+      525.5332031,
+      521.0893555,
+      668.9345703
+     ],
+     "p50_ns": [
+      554,
+      586,
+      555,
+      555,
+      563
+     ],
+     "p99_ns": [
+      1034,
+      1307,
+      1114,
+      1210,
+      1159
+     ]
+    },
+    "tiled_lanes_8_tile_levels_2_mode_insert": {
+     "block_median_ticks_per_row": [
+      1022.608887,
+      1089.960938,
+      1038.532715,
+      1016.438477,
+      1131.716309
+     ],
+     "block_median_ns_per_row": [
+      486.9951172,
+      519.0820312,
+      494.5834961,
+      484.0493164,
+      538.953125
+     ],
+     "p50_ns": [
+      527,
+      528,
+      527,
+      526,
+      529
+     ],
+     "p99_ns": [
+      834,
+      930,
+      787,
+      691,
+      914
+     ]
+    },
+    "packed_lanes_8_layout_forest": {
+     "block_median_ticks_per_row": [
+      1344.392578,
+      1380.104492,
+      1313.751465,
+      1416.29248,
+      1412.291504
+     ],
+     "block_median_ns_per_row": [
+      640.2585449,
+      657.2712402,
+      625.6308594,
+      674.9960938,
+      672.6066895
+     ],
+     "p50_ns": [
+      660,
+      665,
+      657,
+      662,
+      665
+     ],
+     "p99_ns": [
+      852,
+      1121,
+      1135,
+      1232,
+      1246
+     ]
+    },
+    "mix_k4": {
+     "block_median_ticks_per_row": [
+      767.8432617,
+      842.4916992,
+      798.4628906,
+      796.8193359,
+      875.2734375
+     ],
+     "block_median_ns_per_row": [
+      365.6721191,
+      401.2817383,
+      380.2697754,
+      379.5822754,
+      417.0432129
+     ],
+     "p50_ns": [
+      394,
+      416,
+      434,
+      424,
+      483
+     ],
+     "p99_ns": [
+      759,
+      924,
+      853,
+      849,
+      1021
+     ]
+    },
+    "tl2cgen_profiled_lto_prepared": {
+     "block_median_ticks_per_row": [
+      1791.452148,
+      1950.527832,
+      1818.512695,
+      1852.851074,
+      1940.18457
+     ],
+     "block_median_ns_per_row": [
+      853.1247559,
+      928.9848633,
+      866.0322266,
+      882.3483887,
+      924.208252
+     ],
+     "p50_ns": [
+      821,
+      875,
+      828,
+      851,
+      922
+     ],
+     "p99_ns": [
+      1769,
+      1944,
+      1731,
+      1933,
+      1994
+     ]
+    }
+   },
+   "tiled_builds": {
+    "tiled_lanes_8_tile_levels_2_mode_scalar": {
+     "tile_levels": 2,
+     "mode": "scalar",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 16640
+    },
+    "tiled_lanes_8_tile_levels_2_mode_gather": {
+     "tile_levels": 2,
+     "mode": "gather",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 16640
+    },
+    "tiled_lanes_8_tile_levels_2_mode_insert": {
+     "tile_levels": 2,
+     "mode": "insert",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 16640
+    },
+    "tiled_lanes_8_tile_levels_3_mode_scalar": {
+     "tile_levels": 3,
+     "mode": "scalar",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       1
+      ]
+     ],
+     "tile_table_bytes": 33280
+    },
+    "tiled_lanes_8_tile_levels_3_mode_gather": {
+     "tile_levels": 3,
+     "mode": "gather",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       1
+      ]
+     ],
+     "tile_table_bytes": 33280
+    },
+    "tiled_lanes_8_tile_levels_3_mode_insert": {
+     "tile_levels": 3,
+     "mode": "insert",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       1
+      ]
+     ],
+     "tile_table_bytes": 33280
+    },
+    "tiled_lanes_16_tile_levels_3_mode_scalar": {
+     "tile_levels": 3,
+     "mode": "scalar",
+     "lanes": 16,
+     "tile_schedules": [
+      [
+       3,
+       1
+      ]
+     ],
+     "tile_table_bytes": 35840
+    },
+    "tiled_lanes_16_tile_levels_3_mode_insert": {
+     "tile_levels": 3,
+     "mode": "insert",
+     "lanes": 16,
+     "tile_schedules": [
+      [
+       3,
+       1
+      ]
+     ],
+     "tile_table_bytes": 35840
+    }
+   }
+  },
+  "300x6": {
+   "winner": "tiled_lanes_8_tile_levels_3_mode_gather",
+   "tuning_first_pass": {
+    "llvm_select1_profiled_clang": 11145.9,
+    "llvm_cost4_block32_rank4": 8181.6,
+    "llvm_interleaved_self_scalar16": 6983.4,
+    "llvm_interleaved_self_vector8": 24847.3,
+    "llvm_interleaved_self_vector16": 22919.4,
+    "qs": 21882.9,
+    "qs_stride_0": 13527.7,
+    "vpred_lanes_8_layout_tree": 6002.6,
+    "vpred_lanes_8_layout_level": 6043.2,
+    "vpred_lanes_16_layout_tree": 6056.1,
+    "vpred_lanes_16_layout_level": 5092.0,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 5834.3,
+    "packed_lanes_16_layout_dfs": 6462.3,
+    "packed_lanes_16_layout_bfs": 6223.1,
+    "packed_lanes_16_layout_hot_dfs": 6405.7,
+    "packed_lanes_16_layout_frames": 6364.5,
+    "packed_lanes_16_layout_forest": 6286.6,
+    "packed_lanes_8_layout_forest": 6931.5,
+    "rs": 27229.2,
+    "rs_dense_budget_bytes_262144": 25601.3,
+    "direct": 10946.3,
+    "direct_select_depth_1": 10815.8,
+    "tiled_lanes_8_tile_levels_2_mode_scalar": 8561.4,
+    "tiled_lanes_8_tile_levels_2_mode_gather": 5450.1,
+    "tiled_lanes_8_tile_levels_2_mode_insert": 5530.9,
+    "tiled_lanes_8_tile_levels_3_mode_scalar": 11422.3,
+    "tiled_lanes_8_tile_levels_3_mode_gather": 4570.1,
+    "tiled_lanes_8_tile_levels_3_mode_insert": 4887.9,
+    "tiled_lanes_16_tile_levels_3_mode_scalar": 11981.2,
+    "tiled_lanes_16_tile_levels_3_mode_insert": 5377.8,
+    "mix_k2": 6152.4,
+    "mix_k4": 6319.7,
+    "tl2cgen_profiled_lto_prepared": 14904.8
+   },
+   "shortlist_medians": {
+    "tiled_lanes_8_tile_levels_3_mode_gather": 4662.496582,
+    "tiled_lanes_8_tile_levels_3_mode_insert": 5071.001953,
+    "vpred_lanes_16_layout_level": 5217.452637,
+    "tiled_lanes_16_tile_levels_3_mode_insert": 6688.373535,
+    "tiled_lanes_8_tile_levels_2_mode_gather": 5776.241699,
+    "tiled_lanes_8_tile_levels_2_mode_insert": 5398.499023
+   },
+   "evaluation": {
+    "tiled_lanes_8_tile_levels_3_mode_gather": {
+     "block_median_ticks_per_row": [
+      4582.132812,
+      4595.134277,
+      4609.445801,
+      4869.866699,
+      4674.556641
+     ],
+     "block_median_ns_per_row": [
+      2182.157471,
+      2188.48999,
+      2195.332764,
+      2319.417236,
+      2226.29248
+     ],
+     "p50_ns": [
+      2102,
+      2106,
+      2103,
+      2113,
+      2112
+     ],
+     "p99_ns": [
+      3412,
+      3140,
+      3362,
+      3555,
+      3559
+     ]
+    },
+    "llvm_select1_profiled_clang": {
+     "block_median_ticks_per_row": [
+      11029.29102,
+      10826.24756,
+      11236.49805,
+      11491.00928,
+      11136.375
+     ],
+     "block_median_ns_per_row": [
+      5252.629395,
+      5155.808838,
+      5351.464844,
+      5472.373535,
+      5303.482422
+     ],
+     "p50_ns": [
+      4980,
+      5092,
+      5218,
+      5050,
+      5316
+     ],
+     "p99_ns": [
+      11177,
+      18298,
+      18314,
+      11851,
+      14289
+     ]
+    },
+    "llvm_cost4_block32_rank4": {
+     "block_median_ticks_per_row": [
+      8845.640625,
+      8287.876465,
+      9340.981934,
+      8804.625977,
+      8138.179688
+     ],
+     "block_median_ns_per_row": [
+      4212.689697,
+      3947.131104,
+      4448.523682,
+      4193.454346,
+      3875.70459
+     ],
+     "p50_ns": [
+      3810,
+      3742,
+      3940,
+      3995,
+      3698
+     ],
+     "p99_ns": [
+      8855,
+      7375,
+      8950,
+      11430,
+      7827
+     ]
+    },
+    "llvm_interleaved_self_scalar16": {
+     "block_median_ticks_per_row": [
+      6467.222168,
+      6977.589355,
+      7698.943848,
+      11936.12891,
+      6620.01416
+     ],
+     "block_median_ns_per_row": [
+      3080.036133,
+      3323.19458,
+      3666.532959,
+      5684.514404,
+      3152.885742
+     ],
+     "p50_ns": [
+      2957,
+      2957,
+      2971,
+      4332,
+      2966
+     ],
+     "p99_ns": [
+      8948,
+      6743,
+      10237,
+      10088,
+      8737
+     ]
+    },
+    "qs": {
+     "block_median_ticks_per_row": [
+      23486.05859,
+      21388.80811,
+      21792.23242,
+      23731.14893,
+      27536.87402
+     ],
+     "block_median_ns_per_row": [
+      11184.44678,
+      10185.91968,
+      10377.95312,
+      11301.32812,
+      13113.52856
+     ],
+     "p50_ns": [
+      10066,
+      9701,
+      9762,
+      9948,
+      10806
+     ],
+     "p99_ns": [
+      29728,
+      25293,
+      28325,
+      26132,
+      31735
+     ]
+    },
+    "vpred_lanes_16_layout_level": {
+     "block_median_ticks_per_row": [
+      5157.750488,
+      5057.821777,
+      5420.633789,
+      5363.326172,
+      5510.601074
+     ],
+     "block_median_ns_per_row": [
+      2456.431152,
+      2408.783936,
+      2581.650879,
+      2554.22876,
+      2624.400635
+     ],
+     "p50_ns": [
+      2382,
+      2376,
+      2380,
+      2422,
+      2419
+     ],
+     "p99_ns": [
+      5032,
+      5090,
+      6097,
+      7553,
+      6543
+     ]
+    },
+    "packed_lanes_16_layout_bfs": {
+     "block_median_ticks_per_row": [
+      6662.386719,
+      6431.324707,
+      7278.366211,
+      7121.178223,
+      7374.516113
+     ],
+     "block_median_ns_per_row": [
+      3172.852295,
+      3066.368164,
+      3466.311768,
+      3391.735352,
+      3512.062988
+     ],
+     "p50_ns": [
+      2965,
+      3003,
+      3165,
+      3034,
+      3063
+     ],
+     "p99_ns": [
+      5774,
+      6528,
+      9573,
+      6932,
+      8806
+     ]
+    },
+    "tiled_lanes_8_tile_levels_3_mode_insert": {
+     "block_median_ticks_per_row": [
+      5023.829102,
+      4870.180176,
+      5576.815918,
+      4859.250488,
+      5038.67627
+     ],
+     "block_median_ns_per_row": [
+      2392.418945,
+      2319.366455,
+      2655.949219,
+      2314.01709,
+      2399.591797
+     ],
+     "p50_ns": [
+      2283,
+      2283,
+      2291,
+      2283,
+      2294
+     ],
+     "p99_ns": [
+      5421,
+      4141,
+      4669,
+      6060,
+      5482
+     ]
+    },
+    "tl2cgen_profiled_lto_prepared": {
+     "block_median_ticks_per_row": [
+      15132.08643,
+      15561.97852,
+      16261.22168,
+      15229.76514,
+      16069.47461
+     ],
+     "block_median_ns_per_row": [
+      7206.281006,
+      7411.244873,
+      7744.422852,
+      7253.101807,
+      7652.796631
+     ],
+     "p50_ns": [
+      6811,
+      6798,
+      6845,
+      6807,
+      7212
+     ],
+     "p99_ns": [
+      23014,
+      21590,
+      25307,
+      19944,
+      25417
+     ]
+    }
+   },
+   "tiled_builds": {
+    "tiled_lanes_8_tile_levels_2_mode_scalar": {
+     "tile_levels": 2,
+     "mode": "scalar",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 204288
+    },
+    "tiled_lanes_8_tile_levels_2_mode_gather": {
+     "tile_levels": 2,
+     "mode": "gather",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 204288
+    },
+    "tiled_lanes_8_tile_levels_2_mode_insert": {
+     "tile_levels": 2,
+     "mode": "insert",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 204288
+    },
+    "tiled_lanes_8_tile_levels_3_mode_scalar": {
+     "tile_levels": 3,
+     "mode": "scalar",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       3
+      ]
+     ],
+     "tile_table_bytes": 175104
+    },
+    "tiled_lanes_8_tile_levels_3_mode_gather": {
+     "tile_levels": 3,
+     "mode": "gather",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       3
+      ]
+     ],
+     "tile_table_bytes": 175104
+    },
+    "tiled_lanes_8_tile_levels_3_mode_insert": {
+     "tile_levels": 3,
+     "mode": "insert",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       3
+      ]
+     ],
+     "tile_table_bytes": 175104
+    },
+    "tiled_lanes_16_tile_levels_3_mode_scalar": {
+     "tile_levels": 3,
+     "mode": "scalar",
+     "lanes": 16,
+     "tile_schedules": [
+      [
+       3,
+       3
+      ]
+     ],
+     "tile_table_bytes": 175104
+    },
+    "tiled_lanes_16_tile_levels_3_mode_insert": {
+     "tile_levels": 3,
+     "mode": "insert",
+     "lanes": 16,
+     "tile_schedules": [
+      [
+       3,
+       3
+      ]
+     ],
+     "tile_table_bytes": 175104
+    }
+   }
+  },
+  "1000x4": {
+   "winner": "tiled_lanes_8_tile_levels_2_mode_insert",
+   "tuning_first_pass": {
+    "llvm_select1_profiled_clang": 20860.7,
+    "llvm_cost4_block32_rank4": 15064.6,
+    "llvm_interleaved_self_scalar16": 15809.7,
+    "llvm_interleaved_self_vector8": 60371.4,
+    "llvm_interleaved_self_vector16": 52955.5,
+    "qs": 18743.3,
+    "qs_stride_0": 13610.1,
+    "vpred_lanes_8_layout_tree": 12226.7,
+    "vpred_lanes_8_layout_level": 13144.0,
+    "vpred_lanes_16_layout_tree": 14339.4,
+    "vpred_lanes_16_layout_level": 12869.4,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 13373.1,
+    "packed_lanes_16_layout_dfs": 15022.3,
+    "packed_lanes_16_layout_bfs": 15582.3,
+    "packed_lanes_16_layout_hot_dfs": 15420.1,
+    "packed_lanes_16_layout_frames": 14770.9,
+    "packed_lanes_16_layout_forest": 14649.8,
+    "packed_lanes_8_layout_forest": 15255.3,
+    "rs": 25344.0,
+    "rs_dense_budget_bytes_262144": 25192.1,
+    "direct": 20124.0,
+    "direct_select_depth_1": 20965.8,
+    "tiled_lanes_8_tile_levels_2_mode_scalar": 18104.3,
+    "tiled_lanes_8_tile_levels_2_mode_gather": 11931.8,
+    "tiled_lanes_8_tile_levels_2_mode_insert": 11817.6,
+    "tiled_lanes_8_tile_levels_3_mode_scalar": 18051.7,
+    "tiled_lanes_8_tile_levels_3_mode_gather": 12675.4,
+    "tiled_lanes_8_tile_levels_3_mode_insert": 13470.3,
+    "tiled_lanes_16_tile_levels_3_mode_scalar": 18354.1,
+    "tiled_lanes_16_tile_levels_3_mode_insert": 12602.9,
+    "mix_k2": 13620.6,
+    "mix_k4": 14138.5,
+    "tl2cgen_profiled_lto_prepared": 31014.4
+   },
+   "shortlist_medians": {
+    "tiled_lanes_8_tile_levels_2_mode_insert": 11669.80859,
+    "tiled_lanes_8_tile_levels_2_mode_gather": 12142.5542,
+    "vpred_lanes_8_layout_tree": 12285.51514,
+    "tiled_lanes_16_tile_levels_3_mode_insert": 13095.56934,
+    "tiled_lanes_8_tile_levels_3_mode_gather": 12821.78125,
+    "vpred_lanes_16_layout_level": 12092.99463
+   },
+   "evaluation": {
+    "tiled_lanes_8_tile_levels_2_mode_insert": {
+     "block_median_ticks_per_row": [
+      11721.92188,
+      12187.96436,
+      11435.09229,
+      12236.60596,
+      11763.87207
+     ],
+     "block_median_ns_per_row": [
+      5582.391846,
+      5804.060059,
+      5445.774414,
+      5827.486328,
+      5602.246582
+     ],
+     "p50_ns": [
+      5340,
+      5358,
+      5349,
+      5359,
+      5335
+     ],
+     "p99_ns": [
+      10660,
+      16742,
+      12963,
+      13051,
+      10016
+     ]
+    },
+    "llvm_select1_profiled_clang": {
+     "block_median_ticks_per_row": [
+      20570.84619,
+      21137.94971,
+      20698.9541,
+      20981.11914,
+      21310.50537
+     ],
+     "block_median_ns_per_row": [
+      9796.173828,
+      10066.11816,
+      9857.585693,
+      9991.756348,
+      10148.37354
+     ],
+     "p50_ns": [
+      9203,
+      9581,
+      9419,
+      9388,
+      9787
+     ],
+     "p99_ns": [
+      25520,
+      31519,
+      27687,
+      31853,
+      28047
+     ]
+    },
+    "llvm_cost4_block32_rank4": {
+     "block_median_ticks_per_row": [
+      14980.6167,
+      15470.67188,
+      15664.66797,
+      14816.15625,
+      17657.02832
+     ],
+     "block_median_ns_per_row": [
+      7134.001709,
+      7367.657959,
+      7460.191406,
+      7055.679443,
+      8408.147949
+     ],
+     "p50_ns": [
+      6935,
+      7260,
+      6840,
+      7163,
+      7081
+     ],
+     "p99_ns": [
+      20573,
+      23498,
+      20775,
+      21635,
+      21762
+     ]
+    },
+    "llvm_interleaved_self_scalar16": {
+     "block_median_ticks_per_row": [
+      14922.27441,
+      15706.87793,
+      14902.1709,
+      15421.17188,
+      15051.32471
+     ],
+     "block_median_ns_per_row": [
+      7106.250732,
+      7479.721436,
+      7096.935059,
+      7344.037598,
+      7167.901855
+     ],
+     "p50_ns": [
+      6739,
+      6757,
+      6714,
+      6774,
+      6750
+     ],
+     "p99_ns": [
+      18771,
+      23996,
+      18532,
+      22133,
+      20501
+     ]
+    },
+    "qs": {
+     "block_median_ticks_per_row": [
+      18382.02637,
+      18619.82275,
+      18708.26953,
+      20816.39697,
+      22019.69238
+     ],
+     "block_median_ns_per_row": [
+      8753.794922,
+      8867.225586,
+      8909.39917,
+      9913.29248,
+      10485.90088
+     ],
+     "p50_ns": [
+      8564,
+      8539,
+      8592,
+      8717,
+      8792
+     ],
+     "p99_ns": [
+      21430,
+      21469,
+      24977,
+      23592,
+      24609
+     ]
+    },
+    "vpred_lanes_8_layout_tree": {
+     "block_median_ticks_per_row": [
+      12670.80859,
+      12190.51123,
+      16058.3623,
+      13384.6626,
+      13524.69873
+     ],
+     "block_median_ns_per_row": [
+      6034.136475,
+      5805.331055,
+      7647.448975,
+      6374.073486,
+      6440.881592
+     ],
+     "p50_ns": [
+      5668,
+      5638,
+      7362,
+      5648,
+      5578
+     ],
+     "p99_ns": [
+      16850,
+      16862,
+      17646,
+      16322,
+      16645
+     ]
+    },
+    "packed_lanes_16_layout_forest": {
+     "block_median_ticks_per_row": [
+      14955.64648,
+      15772.44287,
+      15405.50049,
+      16611.89453,
+      15131.87109
+     ],
+     "block_median_ns_per_row": [
+      7122.244629,
+      7511.147217,
+      7336.468994,
+      7910.891602,
+      7206.320801
+     ],
+     "p50_ns": [
+      6552,
+      6714,
+      6708,
+      10367,
+      6696
+     ],
+     "p99_ns": [
+      16516,
+      22601,
+      26735,
+      27904,
+      18008
+     ]
+    },
+    "tiled_lanes_8_tile_levels_2_mode_gather": {
+     "block_median_ticks_per_row": [
+      12149.58643,
+      12158.59033,
+      12163.83105,
+      12252.35059,
+      14456.60547
+     ],
+     "block_median_ns_per_row": [
+      5786.122803,
+      5790.194092,
+      5792.956787,
+      5834.990967,
+      6884.467529
+     ],
+     "p50_ns": [
+      5537,
+      5551,
+      5560,
+      5541,
+      5569
+     ],
+     "p99_ns": [
+      9525,
+      12301,
+      12808,
+      16739,
+      16698
+     ]
+    },
+    "tl2cgen_profiled_lto_prepared": {
+     "block_median_ticks_per_row": [
+      33809.23389,
+      31565.1875,
+      31997.64648,
+      31893.87256,
+      35871.27148
+     ],
+     "block_median_ns_per_row": [
+      16100.38745,
+      15031.83862,
+      15237.93872,
+      15188.39136,
+      17082.32446
+     ],
+     "p50_ns": [
+      14641,
+      14528,
+      14365,
+      14610,
+      16019
+     ],
+     "p99_ns": [
+      44840,
+      43073,
+      40127,
+      42048,
+      46237
+     ]
+    }
+   },
+   "tiled_builds": {
+    "tiled_lanes_8_tile_levels_2_mode_scalar": {
+     "tile_levels": 2,
+     "mode": "scalar",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 160000
+    },
+    "tiled_lanes_8_tile_levels_2_mode_gather": {
+     "tile_levels": 2,
+     "mode": "gather",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 160000
+    },
+    "tiled_lanes_8_tile_levels_2_mode_insert": {
+     "tile_levels": 2,
+     "mode": "insert",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 160000
+    },
+    "tiled_lanes_8_tile_levels_3_mode_scalar": {
+     "tile_levels": 3,
+     "mode": "scalar",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       1
+      ]
+     ],
+     "tile_table_bytes": 320000
+    },
+    "tiled_lanes_8_tile_levels_3_mode_gather": {
+     "tile_levels": 3,
+     "mode": "gather",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       1
+      ]
+     ],
+     "tile_table_bytes": 320000
+    },
+    "tiled_lanes_8_tile_levels_3_mode_insert": {
+     "tile_levels": 3,
+     "mode": "insert",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       1
+      ]
+     ],
+     "tile_table_bytes": 320000
+    },
+    "tiled_lanes_16_tile_levels_3_mode_scalar": {
+     "tile_levels": 3,
+     "mode": "scalar",
+     "lanes": 16,
+     "tile_schedules": [
+      [
+       3,
+       1
+      ]
+     ],
+     "tile_table_bytes": 322560
+    },
+    "tiled_lanes_16_tile_levels_3_mode_insert": {
+     "tile_levels": 3,
+     "mode": "insert",
+     "lanes": 16,
+     "tile_schedules": [
+      [
+       3,
+       1
+      ]
+     ],
+     "tile_table_bytes": 322560
+    }
+   }
+  },
+  "300x8": {
+   "winner": "tiled_lanes_8_tile_levels_3_mode_gather",
+   "tuning_first_pass": {
+    "llvm_select1_profiled_clang": 19396.5,
+    "llvm_cost4_block32_rank4": 14837.8,
+    "llvm_interleaved_self_scalar16": 8468.4,
+    "llvm_interleaved_self_vector8": 34992.7,
+    "llvm_interleaved_self_vector16": 30930.3,
+    "vpred_lanes_8_layout_tree": 8081.0,
+    "vpred_lanes_8_layout_level": 8287.6,
+    "vpred_lanes_16_layout_tree": 7869.3,
+    "vpred_lanes_16_layout_level": 7651.3,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 7860.7,
+    "packed_lanes_16_layout_dfs": 8257.8,
+    "packed_lanes_16_layout_bfs": 8697.3,
+    "packed_lanes_16_layout_hot_dfs": 9684.2,
+    "packed_lanes_16_layout_frames": 8117.2,
+    "packed_lanes_16_layout_forest": 8411.6,
+    "packed_lanes_8_layout_forest": 9805.2,
+    "rs": 107842.2,
+    "rs_dense_budget_bytes_262144": 99774.3,
+    "direct": 19608.3,
+    "direct_select_depth_1": 19794.0,
+    "tiled_lanes_8_tile_levels_2_mode_scalar": 10840.0,
+    "tiled_lanes_8_tile_levels_2_mode_gather": 7526.2,
+    "tiled_lanes_8_tile_levels_2_mode_insert": 7336.6,
+    "tiled_lanes_8_tile_levels_3_mode_scalar": 11989.2,
+    "tiled_lanes_8_tile_levels_3_mode_gather": 6307.0,
+    "tiled_lanes_8_tile_levels_3_mode_insert": 7265.0,
+    "tiled_lanes_16_tile_levels_3_mode_scalar": 12473.8,
+    "tiled_lanes_16_tile_levels_3_mode_insert": 10087.0,
+    "mix_k2": 8642.6,
+    "mix_k4": 8550.0,
+    "tl2cgen_profiled_lto_prepared": 27462.5
+   },
+   "shortlist_medians": {
+    "tiled_lanes_8_tile_levels_3_mode_gather": 7019.84375,
+    "tiled_lanes_8_tile_levels_3_mode_insert": 7187.559082,
+    "tiled_lanes_8_tile_levels_2_mode_insert": 7541.343262,
+    "tiled_lanes_8_tile_levels_2_mode_gather": 7599.950684,
+    "vpred_lanes_16_layout_level": 7176.993652,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 8039.524414
+   },
+   "evaluation": {
+    "tiled_lanes_8_tile_levels_3_mode_gather": {
+     "block_median_ticks_per_row": [
+      6533.140137,
+      7539.598633,
+      6595.353516,
+      6349.595215,
+      9300.002441
+     ],
+     "block_median_ns_per_row": [
+      3111.411865,
+      3590.801514,
+      3140.917969,
+      3023.988037,
+      4429.120361
+     ],
+     "p50_ns": [
+      2942,
+      3660,
+      2950,
+      2983,
+      3602
+     ],
+     "p99_ns": [
+      7272,
+      7356,
+      6554,
+      6733,
+      8720
+     ]
+    },
+    "llvm_select1_profiled_clang": {
+     "block_median_ticks_per_row": [
+      19803.42139,
+      21550.08643,
+      20390.67725,
+      22049.64746,
+      20207.87891
+     ],
+     "block_median_ns_per_row": [
+      9430.999756,
+      10262.65405,
+      9710.452148,
+      10500.56592,
+      9623.693359
+     ],
+     "p50_ns": [
+      8904,
+      9160,
+      9859,
+      9385,
+      9702
+     ],
+     "p99_ns": [
+      31960,
+      35244,
+      36734,
+      36719,
+      35648
+     ]
+    },
+    "llvm_cost4_block32_rank4": {
+     "block_median_ticks_per_row": [
+      15470.27588,
+      15840.31006,
+      15363.04346,
+      15660.15771,
+      18466.80176
+     ],
+     "block_median_ns_per_row": [
+      7367.395996,
+      7543.68335,
+      7316.193848,
+      7457.712646,
+      8794.585449
+     ],
+     "p50_ns": [
+      6853,
+      7009,
+      7279,
+      7139,
+      7877
+     ],
+     "p99_ns": [
+      24316,
+      27729,
+      28688,
+      27482,
+      32639
+     ]
+    },
+    "llvm_interleaved_self_scalar16": {
+     "block_median_ticks_per_row": [
+      9311.773438,
+      8681.569336,
+      9006.630371,
+      9078.235352,
+      9666.046875
+     ],
+     "block_median_ns_per_row": [
+      4434.656494,
+      4134.493408,
+      4289.249268,
+      4323.404541,
+      4603.392578
+     ],
+     "p50_ns": [
+      3883,
+      3918,
+      3937,
+      3969,
+      3937
+     ],
+     "p99_ns": [
+      11085,
+      10892,
+      13378,
+      13959,
+      13955
+     ]
+    },
+    "vpred_lanes_16_layout_level": {
+     "block_median_ticks_per_row": [
+      7151.699219,
+      8530.808105,
+      6826.439941,
+      7461.635254,
+      7648.67627
+     ],
+     "block_median_ns_per_row": [
+      3405.925537,
+      4062.656494,
+      3251.050293,
+      3553.527832,
+      3642.747559
+     ],
+     "p50_ns": [
+      3220,
+      3269,
+      3156,
+      3242,
+      3233
+     ],
+     "p99_ns": [
+      7607,
+      11348,
+      8452,
+      8429,
+      8953
+     ]
+    },
+    "packed_lanes_16_layout_frames": {
+     "block_median_ticks_per_row": [
+      8045.444336,
+      8410.143555,
+      9188.337891,
+      9167.196289,
+      13000.41504
+     ],
+     "block_median_ns_per_row": [
+      3831.640625,
+      4005.165771,
+      4375.855957,
+      4365.768311,
+      6191.234375
+     ],
+     "p50_ns": [
+      3786,
+      3812,
+      3833,
+      3709,
+      3896
+     ],
+     "p99_ns": [
+      10840,
+      12097,
+      12207,
+      12710,
+      13689
+     ]
+    },
+    "tiled_lanes_8_tile_levels_3_mode_insert": {
+     "block_median_ticks_per_row": [
+      6971.495605,
+      7228.820312,
+      7757.59082,
+      6921.798828,
+      9641.835449
+     ],
+     "block_median_ns_per_row": [
+      3320.104248,
+      3442.774414,
+      3694.413818,
+      3296.503174,
+      4591.915527
+     ],
+     "p50_ns": [
+      3220,
+      3284,
+      3221,
+      3202,
+      4446
+     ],
+     "p99_ns": [
+      6810,
+      8351,
+      7919,
+      7275,
+      9827
+     ]
+    },
+    "tiled_lanes_8_tile_levels_2_mode_insert": {
+     "block_median_ticks_per_row": [
+      7543.601074,
+      7579.036621,
+      7602.291016,
+      7414.209473,
+      11310.8501
+     ],
+     "block_median_ns_per_row": [
+      3592.567627,
+      3609.459473,
+      3620.486084,
+      3530.915039,
+      5386.525146
+     ],
+     "p50_ns": [
+      3408,
+      3420,
+      3436,
+      3417,
+      4859
+     ],
+     "p99_ns": [
+      7750,
+      7288,
+      7620,
+      7103,
+      10973
+     ]
+    },
+    "tl2cgen_profiled_lto_prepared": {
+     "block_median_ticks_per_row": [
+      26396.90283,
+      29208.99268,
+      28194.74902,
+      27605.94727,
+      26506.11719
+     ],
+     "block_median_ns_per_row": [
+      12570.56445,
+      13910.07886,
+      13426.88379,
+      13146.60547,
+      12622.63843
+     ],
+     "p50_ns": [
+      11737,
+      13058,
+      13134,
+      11942,
+      12430
+     ],
+     "p99_ns": [
+      41020,
+      47102,
+      47799,
+      43780,
+      44713
+     ]
+    }
+   },
+   "tiled_builds": {
+    "tiled_lanes_8_tile_levels_2_mode_scalar": {
+     "tile_levels": 2,
+     "mode": "scalar",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2,
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 826880
+    },
+    "tiled_lanes_8_tile_levels_2_mode_gather": {
+     "tile_levels": 2,
+     "mode": "gather",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2,
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 826880
+    },
+    "tiled_lanes_8_tile_levels_2_mode_insert": {
+     "tile_levels": 2,
+     "mode": "insert",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2,
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 826880
+    },
+    "tiled_lanes_8_tile_levels_3_mode_scalar": {
+     "tile_levels": 3,
+     "mode": "scalar",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       3,
+       2
+      ]
+     ],
+     "tile_table_bytes": 797696
+    },
+    "tiled_lanes_8_tile_levels_3_mode_gather": {
+     "tile_levels": 3,
+     "mode": "gather",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       3,
+       2
+      ]
+     ],
+     "tile_table_bytes": 797696
+    },
+    "tiled_lanes_8_tile_levels_3_mode_insert": {
+     "tile_levels": 3,
+     "mode": "insert",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       3,
+       2
+      ]
+     ],
+     "tile_table_bytes": 797696
+    },
+    "tiled_lanes_16_tile_levels_3_mode_scalar": {
+     "tile_levels": 3,
+     "mode": "scalar",
+     "lanes": 16,
+     "tile_schedules": [
+      [
+       3,
+       3,
+       2
+      ]
+     ],
+     "tile_table_bytes": 797696
+    },
+    "tiled_lanes_16_tile_levels_3_mode_insert": {
+     "tile_levels": 3,
+     "mode": "insert",
+     "lanes": 16,
+     "tile_schedules": [
+      [
+       3,
+       3,
+       2
+      ]
+     ],
+     "tile_table_bytes": 797696
+    }
+   }
+  },
+  "200lg128": {
+   "winner": "tiled_lanes_8_tile_levels_3_mode_gather",
+   "tuning_first_pass": {
+    "llvm_select1_profiled_clang": 14518.6,
+    "llvm_cost4_block32_rank4": 10440.0,
+    "llvm_interleaved_self_scalar16": 8698.8,
+    "llvm_interleaved_self_vector8": 30129.0,
+    "llvm_interleaved_self_vector16": 28074.9,
+    "vpred_lanes_8_layout_tree": 12536.5,
+    "vpred_lanes_8_layout_level": 12592.1,
+    "vpred_lanes_16_layout_tree": 11009.1,
+    "vpred_lanes_16_layout_level": 12339.4,
+    "vpred_lanes_16_layout_tree_group_by_height_false": 11093.0,
+    "packed_lanes_16_layout_dfs": 9265.3,
+    "packed_lanes_16_layout_bfs": 8158.2,
+    "packed_lanes_16_layout_hot_dfs": 8246.9,
+    "packed_lanes_16_layout_frames": 8114.7,
+    "packed_lanes_16_layout_forest": 9073.9,
+    "packed_lanes_8_layout_forest": 8436.4,
+    "rs": 53440.0,
+    "rs_dense_budget_bytes_262144": 53123.8,
+    "direct": 14737.7,
+    "direct_select_depth_1": 13284.3,
+    "tiled_lanes_8_tile_levels_2_mode_scalar": 13185.7,
+    "tiled_lanes_8_tile_levels_2_mode_gather": 10192.6,
+    "tiled_lanes_8_tile_levels_2_mode_insert": 10613.4,
+    "tiled_lanes_8_tile_levels_3_mode_scalar": 15227.8,
+    "tiled_lanes_8_tile_levels_3_mode_gather": 7057.3,
+    "tiled_lanes_8_tile_levels_3_mode_insert": 8282.5,
+    "tiled_lanes_16_tile_levels_3_mode_scalar": 19735.3,
+    "tiled_lanes_16_tile_levels_3_mode_insert": 8481.5,
+    "mix_k2": 8496.2,
+    "mix_k4": 10061.1,
+    "tl2cgen_profiled_lto_prepared": 15449.9
+   },
+   "shortlist_medians": {
+    "tiled_lanes_8_tile_levels_3_mode_gather": 7340.45166,
+    "packed_lanes_16_layout_frames": 8605.775879,
+    "packed_lanes_16_layout_bfs": 8668.240723,
+    "packed_lanes_16_layout_hot_dfs": 8801.387207,
+    "tiled_lanes_8_tile_levels_3_mode_insert": 8610.601562,
+    "packed_lanes_8_layout_forest": 10388.37158
+   },
+   "evaluation": {
+    "tiled_lanes_8_tile_levels_3_mode_gather": {
+     "block_median_ticks_per_row": [
+      7247.678711,
+      8786.660645,
+      7375.393555,
+      7600.11377,
+      10592.9165
+     ],
+     "block_median_ns_per_row": [
+      3451.77417,
+      4184.501221,
+      3512.479492,
+      3619.445557,
+      5044.727783
+     ],
+     "p50_ns": [
+      3402,
+      3449,
+      3411,
+      3408,
+      4768
+     ],
+     "p99_ns": [
+      8522,
+      8558,
+      8452,
+      7684,
+      13252
+     ]
+    },
+    "llvm_select1_profiled_clang": {
+     "block_median_ticks_per_row": [
+      13270.94678,
+      13501.66162,
+      13642.42188,
+      13399.9541,
+      16899.10449
+     ],
+     "block_median_ns_per_row": [
+      6319.903564,
+      6429.951904,
+      6496.804688,
+      6381.578613,
+      8047.656982
+     ],
+     "p50_ns": [
+      6258,
+      6252,
+      6126,
+      6136,
+      7009
+     ],
+     "p99_ns": [
+      17121,
+      26350,
+      16574,
+      15642,
+      31429
+     ]
+    },
+    "llvm_cost4_block32_rank4": {
+     "block_median_ticks_per_row": [
+      10244.25049,
+      10484.37256,
+      10321.06201,
+      10374.33252,
+      10980.91504
+     ],
+     "block_median_ns_per_row": [
+      4878.539062,
+      4992.930908,
+      4915.285645,
+      4940.802246,
+      5229.639404
+     ],
+     "p50_ns": [
+      4825,
+      5202,
+      4760,
+      4738,
+      5025
+     ],
+     "p99_ns": [
+      11572,
+      15251,
+      11368,
+      11011,
+      14873
+     ]
+    },
+    "llvm_interleaved_self_scalar16": {
+     "block_median_ticks_per_row": [
+      8712.631836,
+      8487.580078,
+      8433.011719,
+      8135.166992,
+      9292.464355
+     ],
+     "block_median_ns_per_row": [
+      4149.137451,
+      4042.022217,
+      4016.155273,
+      3874.115479,
+      4425.37085
+     ],
+     "p50_ns": [
+      3834,
+      3802,
+      3791,
+      3777,
+      3802
+     ],
+     "p99_ns": [
+      13274,
+      7868,
+      11440,
+      8786,
+      11403
+     ]
+    },
+    "vpred_lanes_16_layout_tree": {
+     "block_median_ticks_per_row": [
+      10414.43066,
+      10885.32178,
+      10693.51416,
+      10698.71826,
+      17877.85596
+     ],
+     "block_median_ns_per_row": [
+      4959.60791,
+      5183.896729,
+      5092.57959,
+      5095.029541,
+      8513.766846
+     ],
+     "p50_ns": [
+      4866,
+      5145,
+      4886,
+      4742,
+      6346
+     ],
+     "p99_ns": [
+      14388,
+      22203,
+      14438,
+      11025,
+      22769
+     ]
+    },
+    "packed_lanes_16_layout_frames": {
+     "block_median_ticks_per_row": [
+      8883.156738,
+      10809.1543,
+      8444.371094,
+      8048.093262,
+      8628.453125
+     ],
+     "block_median_ns_per_row": [
+      4230.505371,
+      5147.808105,
+      4021.586426,
+      3832.741455,
+      4109.137207
+     ],
+     "p50_ns": [
+      3862,
+      3842,
+      3789,
+      3776,
+      3827
+     ],
+     "p99_ns": [
+      12609,
+      11940,
+      11687,
+      9028,
+      11492
+     ]
+    },
+    "packed_lanes_16_layout_bfs": {
+     "block_median_ticks_per_row": [
+      8444.256348,
+      8796.347656,
+      8948.241211,
+      8349.84082,
+      9346.587402
+     ],
+     "block_median_ns_per_row": [
+      4021.492432,
+      4189.205078,
+      4261.397949,
+      3976.51123,
+      4451.189209
+     ],
+     "p50_ns": [
+      3804,
+      3946,
+      3778,
+      3780,
+      3836
+     ],
+     "p99_ns": [
+      12299,
+      19849,
+      11773,
+      9641,
+      13954
+     ]
+    },
+    "tl2cgen_profiled_lto_prepared": {
+     "block_median_ticks_per_row": [
+      15491.29004,
+      16038.02051,
+      15864.80957,
+      15715.54834,
+      16411.18701
+     ],
+     "block_median_ns_per_row": [
+      7377.328857,
+      7637.664551,
+      7555.162354,
+      7484.209961,
+      7815.355713
+     ],
+     "p50_ns": [
+      6996,
+      7426,
+      7030,
+      7522,
+      7276
+     ],
+     "p99_ns": [
+      22295,
+      30159,
+      28560,
+      28805,
+      29109
+     ]
+    }
+   },
+   "tiled_builds": {
+    "tiled_lanes_8_tile_levels_2_mode_scalar": {
+     "tile_levels": 2,
+     "mode": "scalar",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2,
+       2,
+       2,
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 8736000
+    },
+    "tiled_lanes_8_tile_levels_2_mode_gather": {
+     "tile_levels": 2,
+     "mode": "gather",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2,
+       2,
+       2,
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 8736000
+    },
+    "tiled_lanes_8_tile_levels_2_mode_insert": {
+     "tile_levels": 2,
+     "mode": "insert",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       2,
+       2,
+       2,
+       2,
+       2,
+       2
+      ]
+     ],
+     "tile_table_bytes": 8736000
+    },
+    "tiled_lanes_8_tile_levels_3_mode_scalar": {
+     "tile_levels": 3,
+     "mode": "scalar",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       3,
+       3,
+       3
+      ]
+     ],
+     "tile_table_bytes": 7488000
+    },
+    "tiled_lanes_8_tile_levels_3_mode_gather": {
+     "tile_levels": 3,
+     "mode": "gather",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       3,
+       3,
+       3
+      ]
+     ],
+     "tile_table_bytes": 7488000
+    },
+    "tiled_lanes_8_tile_levels_3_mode_insert": {
+     "tile_levels": 3,
+     "mode": "insert",
+     "lanes": 8,
+     "tile_schedules": [
+      [
+       3,
+       3,
+       3,
+       3
+      ]
+     ],
+     "tile_table_bytes": 7488000
+    },
+    "tiled_lanes_16_tile_levels_3_mode_scalar": {
+     "tile_levels": 3,
+     "mode": "scalar",
+     "lanes": 16,
+     "tile_schedules": [
+      [
+       3,
+       3,
+       3,
+       3
+      ]
+     ],
+     "tile_table_bytes": 7787520
+    },
+    "tiled_lanes_16_tile_levels_3_mode_insert": {
+     "tile_levels": 3,
+     "mode": "insert",
+     "lanes": 16,
+     "tile_schedules": [
+      [
+       3,
+       3,
+       3,
+       3
+      ]
+     ],
+     "tile_table_bytes": 7787520
+    }
+   }
+  }
+ }
+}
